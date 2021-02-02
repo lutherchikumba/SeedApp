@@ -3,11 +3,11 @@ from django.http import HttpResponse
 # Create your views here.
 
 def reports(request):
-    return HttpResponse('Reports Info')
+    return render(request, 'reports/reports.html')
 
 def maps_of_trials(request):
-    return HttpResponse('Map Of Trials')
+    return render(request, 'reports/map_of_trials.html')
 
 def trial_reports(request):
-    return HttpResponse('Trial Report')
+    return render(request, 'trial_reports.html')
 
