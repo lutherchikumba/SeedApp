@@ -9,5 +9,5 @@ def maps_of_trials(request):
     return render(request, 'reports/map_of_trials.html')
 
 def trial_reports(request):
-    return render(request, 'trial_reports.html')
+    return render(request, 'reports/trial_reports.html')
 
