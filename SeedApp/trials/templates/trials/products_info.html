@@ -2,13 +2,13 @@
 
 {% block content %}
 
-<form method="POST" action = "{% url 'product_name' %}">
+<form method="POST" action="{% url 'product_name' %}" enctype="application/x-www-form-urlencoded">
     {% csrf_token %}
     <div class="form-group">
     <label for="exampleInputName">Product Name</label>
     <input type="text" class="form-control" name="product" aria-describedby="product" placeholder="Enter here ...">
-    <label for="exampleInputName">Timimg</label>
-    <input type="text" class="form-control" name="timimg" aria-describedby="timing" placeholder="Enter here ...">
+    <label for="exampleInputName">Timing</label>
+    <input type="text" class="form-control" name="timing" aria-describedby="timing" placeholder="Enter here ...">
     <label for="exampleInputName">Rate</label>
     <input type="text" class="form-control" name="rate" aria-describedby="rate" placeholder="Enter here ...">
     <label for="exampleInputName">Rate Unit</label>

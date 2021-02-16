@@ -2,7 +2,7 @@
 {% extends 'trials/main.html' %}
 
 {% block content %}
-<form method="POST" action = "{% url 'measurements' %}">
+<form method="POST" action="{% url 'measurements' %}" enctype="application/x-www-form-urlencoded">  
     {% csrf_token %}
     <div class="form-group">
     <label for="exampleInputName">Measure </label>
