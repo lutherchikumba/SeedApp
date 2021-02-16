@@ -1,3 +1,4 @@
+
 from django.db import models
 from django.utils import timezone
 
@@ -18,8 +19,8 @@ class Trial(models.Model):
     longitude = models.FloatField(blank=False, null=True)
     crop = models.CharField(max_length=50, blank=True, null=True)
     date = models.DateField(default=timezone.now, blank=True, null=True)
-    notes = models.CharField(max_length=500, blank=True, null=True)
-    user = models.CharField(max_length=100, null=True)
+    notes = models.CharField(max_length=50, blank=True, null=True)
+    user = models.CharField(max_length=50, null=True)
 
 
 class Product(models.Model):
@@ -39,4 +40,4 @@ class Measure(models.Model):
     unit = models.CharField(max_length=150, blank=True, null=True)
     timing = models.CharField(max_length=150, blank=True, null=True)
     value = models.FloatField(blank=True, null=True)
-    treatment_id = models.CharField(max_length=50, blank=True, null=True)
+    type = models.CharField(max_length=50, blank=True, null=True)

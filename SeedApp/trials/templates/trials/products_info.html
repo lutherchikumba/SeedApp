@@ -1,0 +1,23 @@
+{% extends 'trials/main.html' %}
+
+{% block content %}
+
+<form method="POST" action = "{% url 'product_name' %}">
+    {% csrf_token %}
+    <div class="form-group">
+    <label for="exampleInputName">Product Name</label>
+    <input type="text" class="form-control" name="product" aria-describedby="product" placeholder="Enter here ...">
+    <label for="exampleInputName">Timimg</label>
+    <input type="text" class="form-control" name="timimg" aria-describedby="timing" placeholder="Enter here ...">
+    <label for="exampleInputName">Rate</label>
+    <input type="text" class="form-control" name="rate" aria-describedby="rate" placeholder="Enter here ...">
+    <label for="exampleInputName">Rate Unit</label>
+    <input type="text" class="form-control" name="rate_unit" aria-describedby="rate_unit" placeholder="Enter here ...">
+    <label for="exampleInputName">Treatment</label>
+    <input type="text" class="form-control" name="treatment_id" aria-describedby="treatment_id" placeholder="Enter here ...">
+
+    </div>   
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{% endblock %}

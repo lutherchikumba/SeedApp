@@ -1,8 +1,24 @@
 {% extends 'trials/main.html' %}
 
 {% block content %}
-
-    <p>Trials Info page!!</p>
+<form method="POST" action="{% url 'trial_name' %}" enctype="application/x-www-form-urlencoded">
+    {% csrf_token %}
+    <div class="form-group">
+    <label for="exampleInputName">Crop Name</label>
+    <input type="text" class="form-control" name="crop" aria-describedby="crop" placeholder="Enter here ...">
+    <label for="exampleInputName">Latitude</label>
+    <input type="text" class="form-control" name="latitude" aria-describedby="latitude" placeholder="Enter here ...">
+    <label for="exampleInputName">Longitude</label>
+    <input type="text" class="form-control" name="longitude" aria-describedby="longitude" placeholder="Enter here ...">
+    <label for="exampleInputName">Date</label>
+    <input type="text" class="form-control" name="date" aria-describedby="date" placeholder="Enter here ...">
+    <label for="exampleInputName">Notes</label>
+    <input type="text" class="form-control" name="notes" aria-describedby="notes" placeholder="Enter here ...">
+    <label for="exampleInputName">User Name</label>
+    <input  type="text" class="form-control" name="user" aria-describedby="user" placeholder="Enter here ...">
+    </div>   
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 
 
 {% endblock%}
