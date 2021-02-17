@@ -24,13 +24,24 @@ class Products_Form(forms.ModelForm):
         model = Product
         fields = ['product', 'timing', 'rate', 'rate_unit', 'treatment_id']
 
-class Treatments_Form(forms.ModelForm):
-    treatment = forms.CharField(error_messages={'required':'Please enter your product'})
-    unit = forms.CharField(error_messages={'required':'Please enter your timing'})
-    timing = forms.CharField(error_messages={'required':'Please enter your date'})
-    value = forms.FloatField(error_messages={'required':'Please enter your value'})
-    type_of_treatment = forms.CharField(error_messages={'required':'Please enter your username'})
+# class Treatments_Form(forms.ModelForm):
+#     treatment = forms.CharField(error_messages={'required':'Please enter your product'})
+#     unit = forms.CharField(error_messages={'required':'Please enter your timing'})
+#     timing = forms.CharField(error_messages={'required':'Please enter your date'})
+#     value = forms.FloatField(error_messages={'required':'Please enter your value'})
+#     type_of_treatment = forms.CharField(error_messages={'required':'Please enter your username'})
+
+#     class Meta:
+#         model = Treatment
+#         fields = ['treatment','unit', 'timing', 'value', 'type_of_treatment']
+
+class Grower_Form(forms.ModelForm):
+    name = forms.CharField(error_messages={'required':'Please enter your timing'})
+    email = forms.EmailField(error_messages={'required':'Please enter your date'})
+    phone = forms.CharField(error_messages={'required':'Please enter your value'})
+    zip_code = forms.IntegerField(error_messages={'required':'Please enter your username'})
+
 
     class Meta:
-        model = Treatment
-        fields = ['treatment','unit', 'timing', 'value', 'type_of_treatment']
+        model = Grower
+        fields = ['name','email', 'phone', 'zip_code']

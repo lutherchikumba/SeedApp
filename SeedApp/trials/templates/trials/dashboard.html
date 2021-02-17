@@ -2,6 +2,20 @@
 
 {% block content %}
 
-    <p>Dash board page!!</p>
+<form method="POST" action="{% url 'dashboard' %}" enctype="application/x-www-form-urlencoded">
+    {% csrf_token %}
+    <div class="form-group">
+    <label for="exampleInputName">Name</label> 
+    <input type="text" class="form-control" name="name" aria-describedby="name" placeholder="Enter here ..."><br>
+    <label for="exampleInputName">Email Address </label>
+    <input type="text" class="form-control" name="email" aria-describedby="email" placeholder="Enter here ..."><br>
+    <label for="exampleInputName">Phone Number</label> 
+    <input type="text" class="form-control" name="phone" aria-describedby="phone" placeholder="Enter here ..."><br>
+    <label for="exampleInputName">Zip code</label>
+    <input type="text" class="form-control" name="zip_code" aria-describedby="zip_code" placeholder="Enter here ..."><br>
+    </div>   
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
 
 {% endblock %}

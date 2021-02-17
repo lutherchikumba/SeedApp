@@ -5,6 +5,9 @@ from .forms import *
 
 # Create your views here.
 def home(request):
+    form = Grower_Form(request.POST or None)
+    if request.method == 'POST' and form.is_valid():
+        form.save()
     return render(request, 'trials/dashboard.html')
 
 def trials(request):
@@ -29,11 +32,11 @@ def products(request):
 
     return render(request, 'trials/products_info.html')
     
-def treatments(request):
-    form = Treatments_Form(request.POST or None)
-    if request.method == 'POST' and form.is_valid():
-        form.save()
-    return render(request, 'trials/treatments_info.html')
+# def treatments(request):
+#     form = Treatments_Form(request.POST or None)
+#     if request.method == 'POST' and form.is_valid():
+#         form.save()
+#     return render(request, 'trials/treatments_info.html')
 
 
 

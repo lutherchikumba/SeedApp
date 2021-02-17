@@ -7,9 +7,8 @@ class Grower(models.Model):
     grower_id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=50, blank=False, null=True)
     email = models.EmailField(unique=True, blank=False, null=True)
-    phone = models.CharField(max_length=50, blank=True, null=True)
-    zip = models.IntegerField(blank=False, null=True)
-    user = models.CharField(max_length=100, null=True)
+    phone = models.CharField(max_length=10, blank=False, null=True)
+    zip_code = models.IntegerField(blank=False, null=True)
 
 
 class Trial(models.Model):
@@ -42,11 +41,11 @@ class Measure(models.Model):
     value = models.FloatField(blank=False, null=True)
     type = models.CharField(max_length=50, blank=False, null=True)
 
-class Treatment(models.Model):
-    treatment_id = models.BigAutoField(primary_key=True)
-    trial_id = models.ForeignKey(Trial, on_delete=models.CASCADE, blank=True, null=True)
-    treatment = models.CharField(max_length=50, blank=False, null=True)
-    unit = models.CharField(max_length=50, blank=False, null=True)
-    timing = models.CharField(max_length=50, blank=False, null=True)
-    value = models.FloatField(blank=False, null=True)
-    type_of_treatment = models.CharField(max_length=50, blank=False, null=True)
+# class Treatment(models.Model):
+#     treatment_id = models.BigAutoField(primary_key=True)
+#     trial_id = models.ForeignKey(Trial, on_delete=models.CASCADE, blank=True, null=True)
+#     treatment = models.CharField(max_length=50, blank=False, null=True)
+#     unit = models.CharField(max_length=50, blank=False, null=True)
+#     timing = models.CharField(max_length=50, blank=False, null=True)
+#     value = models.FloatField(blank=False, null=True)
+#     type_of_treatment = models.CharField(max_length=50, blank=False, null=True)
