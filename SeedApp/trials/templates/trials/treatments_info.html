@@ -2,6 +2,22 @@
 
 {% block content %}
 
-    <p>Treatments Info page!!</p>
+<form method="POST" action="{% url 'treatements' %}" enctype="application/x-www-form-urlencoded">
+    {% csrf_token %}
+    <div class="form-group">
+    <label for="exampleInputName">Treatment</label>
+    <input type="text" class="form-control" name="treatment" aria-describedby="treatment" placeholder="Enter here ...">
+    <label for="exampleInputName">Unit</label>
+    <input type="text" class="form-control" name="unit" aria-describedby="unit" placeholder="Enter here ...">
+    <label for="exampleInputName">Timing</label>
+    <input type="text" class="form-control" name="timing" aria-describedby="timing" placeholder="Enter here ...">
+    <label for="exampleInputName">Value</label>
+    <input type="text" class="form-control" name="value" aria-describedby="value" placeholder="Enter here ...">
+    <label for="exampleInputName">Type Of Tclereatment</label>
+    <input type="text" class="form-control" name="type_of_treatment" aria-describedby="type_of_treatment" placeholder="Enter here ...">
+
+    </div>   
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 
 {% endblock %}

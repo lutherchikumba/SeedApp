@@ -24,13 +24,13 @@ class Products_Form(forms.ModelForm):
         model = Product
         fields = ['product', 'timing', 'rate', 'rate_unit', 'treatment_id']
 
-class Measurements_Form(forms.ModelForm):
-    measure = forms.CharField(error_messages={'required':'Please enter your product'})
+class Treatments_Form(forms.ModelForm):
+    treatment = forms.CharField(error_messages={'required':'Please enter your product'})
     unit = forms.CharField(error_messages={'required':'Please enter your timing'})
     timing = forms.CharField(error_messages={'required':'Please enter your date'})
     value = forms.FloatField(error_messages={'required':'Please enter your value'})
-    treatment_id = forms.CharField(error_messages={'required':'Please enter your username'})
+    type_of_treatment = forms.CharField(error_messages={'required':'Please enter your username'})
 
     class Meta:
-        model = Measure
-        fields = ['measure','unit', 'timing', 'value']
+        model = Treatment
+        fields = ['treatment','unit', 'timing', 'value', 'type_of_treatment']

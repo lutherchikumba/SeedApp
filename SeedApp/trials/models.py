@@ -41,3 +41,12 @@ class Measure(models.Model):
     timing = models.CharField(max_length=50, blank=False, null=True)
     value = models.FloatField(blank=False, null=True)
     type = models.CharField(max_length=50, blank=False, null=True)
+
+class Treatment(models.Model):
+    treatment_id = models.BigAutoField(primary_key=True)
+    trial_id = models.ForeignKey(Trial, on_delete=models.CASCADE, blank=True, null=True)
+    treatment = models.CharField(max_length=50, blank=False, null=True)
+    unit = models.CharField(max_length=50, blank=False, null=True)
+    timing = models.CharField(max_length=50, blank=False, null=True)
+    value = models.FloatField(blank=False, null=True)
+    type_of_treatment = models.CharField(max_length=50, blank=False, null=True)
