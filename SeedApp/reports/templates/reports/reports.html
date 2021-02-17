@@ -2,7 +2,9 @@
 
 {% block content %}
 
-    <p>Reports page!!</p>
-    {{hello}}
+    <p>{{hello}}</p>
+    {% for trial in trials %}
+        {{trial.crop}}
+    {%endfor%}
 
 {% endblock %}

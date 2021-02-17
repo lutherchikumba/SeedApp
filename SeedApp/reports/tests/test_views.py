@@ -1,16 +1,21 @@
 from django.test import TestCase, RequestFactory
 from django.contrib.auth.models import User, AnonymousUser
-from reports.views import report_view
+from reports.views import reports_view
 
 
 class TestViews(TestCase):
 
     def setUp(self):
         self.factory = RequestFactory()
-        self.user = User(username='onfarm', password='onfarm00')
 
-    def test_home_view_GET(self):
-        request = self.factory.get('/trials/home/')
-        request.user = self.user
-        response = report_view(request)
+    def test_reports_view_GET(self):
+        request = self.factory.get('/reports/')
+        request.user = AnonymousUser()
+        response = reports_view(request)
+        self.assertEqual(response.status_code, 200)
+
+    def test_reports_view_POST(self):
+        request = self.factory.post('/reports/')
+        request.user = AnonymousUser()
+        response = reports_view(request)
         self.assertEqual(response.status_code, 200)
