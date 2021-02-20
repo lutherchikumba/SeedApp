@@ -1,5 +1,5 @@
 from django.test import TestCase, RequestFactory
-from django.contrib.auth.models import User, AnonymousUser
+from django.contrib.auth.models import AnonymousUser
 from reports.views import reports_view
 
 
