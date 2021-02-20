@@ -1,13 +1,22 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-# Create your views here.
+from trials.models import Grower, Trial, Product, Measure
 
-def reports(request):
-    return render(request, 'reports/reports.html')
 
-def maps_of_trials(request):
-    return render(request, 'reports/map_of_trials.html')
+def reports_view(request):
+    template = 'reports/reports.html'
+    if request.method == 'POST':
+        print('post')
+    growers = Grower.objects.all()
+    trials = Trial.objects.all()
+    products = Product.objects.all()
+    measures = Measure.objects.all()
+    context = {
+        'hello': 'Hello World!',
+        'growers': growers,
+        'trials': trials,
+        'products': products,
+        'measures': measures
+    }
+    return render(request, template, context)
 
-def trial_reports(request):
-    return render(request, 'reports/trial_reports.html')
 

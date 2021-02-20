@@ -1,7 +1,34 @@
 {% extends 'reports/main.html' %}
 
 {% block content %}
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+          crossorigin=""/>
 
-    <p>Reports page!!</p>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin="">
+    </script>
+</head>
+<div id="map" style="height: 50em; ">
+</div>
+
+<script>
+<!--example cn be found https://leafletjs.com/ -->
+    var map = L.map('map').setView([39, -99], 5);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    {%for trial in trials%}
+        {%if trial.latitude != None and trial.latitude < 180 %}
+            L.marker([{{trial.latitude}}, {{trial.longitude}}])
+            .bindPopup('Trial: {{trial.trial_id}} - {{trial.crop}}')
+            .addTo(map);
+        {%endif%}
+    {%endfor%}
+</script>
 
 {% endblock %}
