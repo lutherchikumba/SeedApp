@@ -7,9 +7,8 @@ class Grower(models.Model):
     grower_id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=50, blank=False, null=True)
     email = models.EmailField(unique=True, blank=False, null=True)
-    phone = models.CharField(max_length=50, blank=True, null=True)
-    zip = models.IntegerField(blank=False, null=True)
-    user = models.CharField(max_length=100, null=True)
+    phone = models.CharField(max_length=10, blank=False, null=True)
+    zip_code = models.IntegerField(blank=False, null=True)
 
 
 class Trial(models.Model):

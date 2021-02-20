@@ -34,3 +34,26 @@ class Treatments_Form(forms.ModelForm):
     class Meta:
         model = Treatment
         fields = ['treatment','unit', 'timing', 'value', 'type_of_treatment']
+
+class Grower_Form(forms.ModelForm):
+    name = forms.CharField(error_messages={'required':'Please enter your timing'})
+    email = forms.EmailField(error_messages={'required':'Please enter your date'})
+    phone = forms.CharField(error_messages={'required':'Please enter your value'})
+    zip_code = forms.IntegerField(error_messages={'required':'Please enter your username'})
+
+
+    class Meta:
+        model = Grower
+        fields = ['name','email', 'phone', 'zip_code']
+
+class Measurements_Form(forms.ModelForm):
+    measure = forms.CharField(error_messages={'required':'Please enter your timing'})
+    unit = forms.CharField(error_messages={'required':'Please enter your date'})
+    timing = forms.CharField(error_messages={'required':'Please enter your value'})
+    value = forms.FloatField(error_messages={'required':'Please enter your username'})
+    type = forms.CharField(error_messages={'required':'Please enter your username'})
+
+
+    class Meta:
+        model = Measure
+        fields = ['measure','unit', 'timing','value', 'type']
