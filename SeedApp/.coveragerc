@@ -1,0 +1,3 @@
+[run]
+source = .
+omit = SeedApp/*, *migrations*, *tests*, *manage*, *apps*, *__init__*
