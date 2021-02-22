@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<form method="POST" action="{% url 'treatements' %}" enctype="application/x-www-form-urlencoded">
+<form method="POST" action="{% url 'treatments' %}" enctype="application/x-www-form-urlencoded">
     {% csrf_token %}
     <div class="form-group">
     <label for="exampleInputName">Treatment</label>
