@@ -1,23 +1,92 @@
-{% extends 'trials/main.html' %}
-
+{% load static %}
 {% block content %}
+<link rel ="stylesheet" type = "text/css" href = "{% static '/css/products.css' %}">
+<script type="text/javascript" src ="{% static 'js/products.js' %}"></script>
 
-<form method="POST" action="{% url 'product_name' %}" enctype="application/x-www-form-urlencoded">
-    {% csrf_token %}
-    <div class="form-group">
-    <label for="exampleInputName">Product Name</label>
-    <input type="text" class="form-control" name="product" aria-describedby="product" placeholder="Enter here ...">
-    <label for="exampleInputName">Timing</label>
-    <input type="text" class="form-control" name="timing" aria-describedby="timing" placeholder="Enter here ...">
-    <label for="exampleInputName">Rate</label>
-    <input type="text" class="form-control" name="rate" aria-describedby="rate" placeholder="Enter here ...">
-    <label for="exampleInputName">Rate Unit</label>
-    <input type="text" class="form-control" name="rate_unit" aria-describedby="rate_unit" placeholder="Enter here ...">
-    <label for="exampleInputName">Treatment</label>
-    <input type="text" class="form-control" name="treatment_id" aria-describedby="treatment_id" placeholder="Enter here ...">
 
-    </div>   
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+
+
+    <div class="left">
+            
+    <div class="split left">
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="#">Trial</a>
+    <a href="#">Reports</a>
+    <a href="#">Grower</a>
+    <a href="#">About</a>
+    <a href="#">Logout</a>
+    
+</div>
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+
+        <form method="POST" action="{% url 'product_name' %}" enctype="application/x-www-form-urlencoded">
+            {% csrf_token %}
+            <button class="button button1">Treatment</button>
+            <table border="1">
+                <tr>
+                    <th>Product Name</th>
+                    <th>Timing</th>
+                    <th>Rate</th>
+                    <th>Rate Unit</th>
+                    <th>Treatment</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <input type="text" class="form-control" name="product" aria-describedby="product" placeholder="Enter here ...">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="timing" aria-describedby="timing" placeholder="Enter here ...">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="rate" aria-describedby="rate" placeholder="Enter here ...">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="rate_unit" aria-describedby="rate_unit" placeholder="Enter here ...">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="treatment_id" aria-describedby="treatment_id" placeholder="Enter here ...">
+                        </td>
+                    </tr>
+            </table> 
+            <button type="submit" class="btn btn-primary">Submit</button>
+        
+        <hr>
+        
+    
+
+            <button class="button button1">Treatment</button>
+            <table border="1">
+                <tr>
+                    <th>Product Name</th>
+                    <th>Timing</th>
+                    <th>Rate</th>
+                    <th>Rate Unit</th>
+                </tr>
+                    {% for result in Products %}
+                    <tr>
+                        <td>
+                            {{result.product}}
+                        </td>
+                        <td>
+                            {{result.timing}}
+                        </td>
+                        <td>
+                            {{result.rate}}
+                        </td>
+                        <td>
+                            {{result.rate_unit}}
+                        </td>
+                    </tr>
+                    {% endfor %}
+            </table>
+        </form>
+        </div> 
+
+
+        <!-- <div class="right">
+        <h1>Some random text on the right</h1>
+        </div> -->
+
 
 {% endblock %}
