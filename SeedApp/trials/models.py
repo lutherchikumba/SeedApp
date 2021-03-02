@@ -30,6 +30,7 @@ class Product(models.Model):
     rate = models.FloatField(blank=False, null=True)
     rate_unit = models.CharField(max_length=50, blank=False, null=True)
     treatment_id = models.CharField(max_length=50, blank=False, null=True)
+    
 
 
 class Measure(models.Model):

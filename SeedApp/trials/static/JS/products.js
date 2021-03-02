@@ -10,3 +10,19 @@
         document.getElementById("main").style.marginLeft= "0";
         document.body.style.backgroundColor = "white";
       }
+
+      function getvalues(){
+        var seleted = new Array();
+        var chkbox=document.getElementById("tabl");
+        var selchk = chkbox.getElementsByTagName("input");
+        for(var i = 0; i<selchk.length;i++){
+          if(selchk[i].checked){
+              seleted.push(selchk[i].value);
+          }
+        }
+
+        seleted = seleted.join("<br>");
+        if(seleted.length > 0){
+            document.getElementById("display_values").innerHTML = seleted ;
+        }
+      };
