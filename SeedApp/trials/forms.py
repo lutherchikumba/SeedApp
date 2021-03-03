@@ -26,14 +26,15 @@ class Products_Form(forms.ModelForm):
 
 class Treatments_Form(forms.ModelForm):
     treatment = forms.CharField(error_messages={'required':'Please enter your product'})
-    unit = forms.CharField(error_messages={'required':'Please enter your timing'})
-    timing = forms.CharField(error_messages={'required':'Please enter your date'})
+    treatment_name = forms.CharField(error_messages={'required':'Please enter your timing'})
+    # unit = forms.CharField(error_messages={'required':'Please enter your timing'})
+    # timing = forms.CharField(error_messages={'required':'Please enter your date'})
     value = forms.FloatField(error_messages={'required':'Please enter your value'})
     type_of_treatment = forms.CharField(error_messages={'required':'Please enter your username'})
 
     class Meta:
         model = Treatment
-        fields = ['treatment','unit', 'timing', 'value', 'type_of_treatment']
+        fields = ['treatment','treatment_name', 'value', 'type_of_treatment']
 
 class Grower_Form(forms.ModelForm):
     name = forms.CharField(error_messages={'required':'Please enter your timing'})

@@ -26,3 +26,18 @@
             document.getElementById("display_values").innerHTML = seleted ;
         }
       };
+
+      $(document).ready(function()
+      {
+        $('.chkcvalues').click(function()
+        {
+          var txt = "";
+          $('chkcvalues:checked').each(function()
+          {
+            txt+=$(this).val()+","
+          });
+          txt = txt.substring(0, txt.length-1);
+          $('#txtvalues').val(txt);
+        });
+
+      });

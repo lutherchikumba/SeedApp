@@ -51,7 +51,7 @@
             </table> 
 
         <hr>
-            <button class="button button1">Treatment</button>
+            <button class="button button1">Products List</button>
             <table border="5" id="tabl" style="width: 50%">
                 <tr>
                     <th>Product Name</th>
@@ -63,7 +63,7 @@
                     
                     <tr>
                         <td>
-                            <input type="checkbox" value="{{check_box.product}}"/>
+                            <input type="checkbox" value="{{check_box.product}}" class=" chkcvalues"/>
                             {{check_box.product}}
                         </td>
                         <td>
@@ -78,24 +78,41 @@
                     </tr>
                     {% endfor %}
             </table>
+            <!-- <input type="text" name="product"> -->
             <input type="button" id="but1" value="Display Records" onclick="getvalues()">
             <!-- <b id="display_values"></b><br> -->
         </form>
         </div> 
             <div class="right">
-                <center>
-
-                    <table border="5" id="tabl" style="width: 50%">
+                <form method="POST" action="{% url 'treatments' %}" enctype="application/x-www-form-urlencoded">
+                    {% csrf_token %}
+                    <table border="1">
                         <tr>
-                            <th>Product Name</th>
+                            <th>Treatment</th>
+                            <th>Treatment Name</th>
+                            <th>Type Of Treatment</th>
+                            <th>Value</th>
+                        </tr>
                             <tr>
                                 <td>
-                                    <b id="display_values"></b>
+                                    <!-- <b id="display_values"></b> -->
+                                    <input type="submit " id="display_values" >
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" name="treatment_name" aria-describedby="treatment_name" placeholder="Enter here ...">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" name="value" aria-describedby="value" placeholder="Enter here ...">
+                                </td>
+    
+                                <td>
+                                    <input type="text" class="form-control" name="type_of_treatment" aria-describedby="type_of_treatment" placeholder="Enter here ...">
                                 </td>
                             </tr>
-                    </table>
+                    </table> 
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
 
-                </center>
 
         </div>
 
