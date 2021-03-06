@@ -1,21 +1,17 @@
 from django.shortcuts import render
 from trials.models import Grower, Trial, Product, Measure
+from django.core.serializers import serialize
 
 
 def reports_view(request):
     template = 'reports/reports.html'
     if request.method == 'POST':
         print('post')
-    growers = Grower.objects.all()
-    trials = Trial.objects.all()
-    products = Product.objects.all()
-    measures = Measure.objects.all()
+
+    trials = serialize('json', Trial.objects.all())
+    print(trials)
     context = {
-        'hello': 'Hello World!',
-        'growers': growers,
         'trials': trials,
-        'products': products,
-        'measures': measures
     }
     return render(request, template, context)
 
