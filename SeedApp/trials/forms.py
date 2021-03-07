@@ -1,4 +1,5 @@
 from django import forms
+from django.forms import ModelForm
 from .models import *
 
 class Trial_Form(forms.ModelForm):
@@ -13,16 +14,16 @@ class Trial_Form(forms.ModelForm):
         model = Trial
         fields = ['crop', 'latitude', 'longitude', 'date', 'notes', 'user']
 
-class Products_Form(forms.ModelForm):
-    product = forms.CharField(error_messages={'required':'Please enter your products'})
-    timing = forms.CharField(error_messages={'required':'Please enter your timing'})
-    rate = forms.FloatField(error_messages={'required':'Please enter your date'})
-    rate_unit = forms.CharField(error_messages={'required':'Please enter your value'})
-    treatment_id = forms.CharField(error_messages={'required':'Please enter your username'})
+# class Products_Form(forms.ModelForm):
+#     product = forms.CharField(error_messages={'required':'Please enter your products'})
+#     timing = forms.CharField(error_messages={'required':'Please enter your timing'})
+#     rate = forms.FloatField(error_messages={'required':'Please enter your date'})
+#     rate_unit = forms.CharField(error_messages={'required':'Please enter your value'})
+#     treatment_id = forms.CharField(error_messages={'required':'Please enter your username'})
     
-    class Meta:
-        model = Product
-        fields = ['product', 'timing', 'rate', 'rate_unit', 'treatment_id']
+#     class Meta:
+#         model = Product
+#         fields = ['product', 'timing', 'rate', 'rate_unit', 'treatment_id']
 
 class Treatments_Form(forms.ModelForm):
     treatment = forms.CharField(error_messages={'required':'Please enter your product'})
@@ -58,3 +59,10 @@ class Measurements_Form(forms.ModelForm):
     class Meta:
         model = Measure
         fields = ['measure','unit', 'timing','value', 'type']
+
+class ProductForm(ModelForm):
+    treatment = forms.IntegerField(widget = forms.HiddenInput(), required=True)
+
+    class Meta:
+        model = Product 
+        fields = '__all__'

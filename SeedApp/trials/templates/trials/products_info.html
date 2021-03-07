@@ -1,119 +1,35 @@
+{% extends 'trials/main.html' %}
 {% load static %}
-{% block content %}
-<link rel ="stylesheet" type = "text/css" href = "{% static '/css/products.css' %}">
+{% block content%}
+
+<form id="form" method="post">
+    {% csrf_token %}
+    {{formset.management_form}}
+    <input type="hidden" id="NumberOfTreatments" value={{num}}>
+    {% for form in formset%}
+        <div class="C-{{form.treatment.value}}">
+        {% ifchanged %}
+            <br>
+            <br>
+            <h3>T-{{form.treatment.value}}</h3>
+            <button type="button" class="addP" id="addP-{{form.treatment.value}}">+Product</button>
+            <button type="button" class="subP" id="subP-{{form.treatment.value}}">-Product</button>
+            <hr>
+    {%endifchanged%}
+            <div class="P-{{forloop.counter}}">
+            {{ form.as_table }}<br>
+            </div>
+            
+        </div>
+    {% endfor %}
+    <button type="button" id="addTreatment">+Treatment</button> 
+    <button type="button" id="subTreatment">-Treatment</button>
+    <input id="submit" type="submit" value="Submit">
+
+</form>
+
+<!-- <script src="{% static 'js/main.js' %}"></script> -->
 <script type="text/javascript" src ="{% static 'js/products.js' %}"></script>
 
-
-
-
-    <div class="left">
-            
-    <div class="split left">
-<div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="#">Trial</a>
-    <a href="#">Reports</a>
-    <a href="#">Grower</a>
-    <a href="#">About</a>
-    <a href="#">Logout</a>
-    
-</div>
-<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
-
-        <form method="POST" action="{% url 'product_name' %}" enctype="application/x-www-form-urlencoded">
-            {% csrf_token %}
-            <button class="button button1">Products</button>
-            <table border="1">
-                <tr>
-                    <th>Product Name</th>
-                    <th>Timing</th>
-                    <th>Rate</th>
-                    <th>Rate Unit</th>
-                    <th>Treatment</th>
-                </tr>
-                    <tr>
-                        <td>
-                            <input type="text" class="form-control" name="product" aria-describedby="product" placeholder="Enter here ...">
-                        </td>
-                        <td>
-                            <input type="text" class="form-control" name="timing" aria-describedby="timing" placeholder="Enter here ...">
-                        </td>
-                        <td>
-                            <input type="text" class="form-control" name="rate" aria-describedby="rate" placeholder="Enter here ...">
-                        </td>
-                        <td>
-                            <input type="text" class="form-control" name="rate_unit" aria-describedby="rate_unit" placeholder="Enter here ...">
-                        </td>
-                        <td>
-                            <input type="text" class="form-control" name="treatment_id" aria-describedby="treatment_id" placeholder="Enter here ...">
-                        </td>
-                    </tr>
-            </table> 
-
-        <hr>
-            <button class="button button1">Products List</button>
-            <table border="5" id="tabl" style="width: 50%">
-                <tr>
-                    <th>Product Name</th>
-                    <th>Timing</th>
-                    <th>Rate</th>
-                    <th>Rate Unit</th>
-                </tr>
-                    {% for check_box in Products %}
-                    
-                    <tr>
-                        <td>
-                            <input type="checkbox" value="{{check_box.product}}" class=" chkcvalues"/>
-                            {{check_box.product}}
-                        </td>
-                        <td>
-                            {{check_box.timing}}
-                        </td>
-                        <td>
-                            {{check_box.rate}}
-                        </td>
-                        <td>
-                            {{check_box.rate_unit}}
-                        </td>
-                    </tr>
-                    {% endfor %}
-            </table>
-            <!-- <input type="text" name="product"> -->
-            <input type="button" id="but1" value="Display Records" onclick="getvalues()">
-            <!-- <b id="display_values"></b><br> -->
-        </form>
-        </div> 
-            <div class="right">
-                <form method="POST" action="{% url 'treatments' %}" enctype="application/x-www-form-urlencoded">
-                    {% csrf_token %}
-                    <table border="1">
-                        <tr>
-                            <th>Treatment</th>
-                            <th>Treatment Name</th>
-                            <th>Type Of Treatment</th>
-                            <th>Value</th>
-                        </tr>
-                            <tr>
-                                <td>
-                                    <!-- <b id="display_values"></b> -->
-                                    <input type="submit " id="display_values" >
-                                </td>
-                                <td>
-                                    <input type="text" class="form-control" name="treatment_name" aria-describedby="treatment_name" placeholder="Enter here ...">
-                                </td>
-                                <td>
-                                    <input type="text" class="form-control" name="value" aria-describedby="value" placeholder="Enter here ...">
-                                </td>
-    
-                                <td>
-                                    <input type="text" class="form-control" name="type_of_treatment" aria-describedby="type_of_treatment" placeholder="Enter here ...">
-                                </td>
-                            </tr>
-                    </table> 
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-
-
-        </div>
 
 {% endblock %}

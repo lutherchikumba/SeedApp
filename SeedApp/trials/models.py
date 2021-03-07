@@ -22,14 +22,14 @@ class Trial(models.Model):
     user = models.CharField(max_length=50, null=True)
 
 
-class Product(models.Model):
-    product_id = models.BigAutoField(primary_key=True)
-    trial_id = models.ForeignKey(Trial, on_delete=models.CASCADE, blank=True, null=True)
-    product = models.CharField(max_length=50, blank=False, null=True)
-    timing = models.CharField(max_length=50, blank=False, null=True)
-    rate = models.FloatField(blank=False, null=True)
-    rate_unit = models.CharField(max_length=50, blank=False, null=True)
-    treatment_id = models.CharField(max_length=50, blank=False, null=True)
+# class Product(models.Model):
+#     product_id = models.BigAutoField(primary_key=True)
+#     trial_id = models.ForeignKey(Trial, on_delete=models.CASCADE, blank=True, null=True)
+#     product = models.CharField(max_length=50, blank=False, null=True)
+#     timing = models.CharField(max_length=50, blank=False, null=True)
+#     rate = models.FloatField(blank=False, null=True)
+#     rate_unit = models.CharField(max_length=50, blank=False, null=True)
+#     treatment_id = models.CharField(max_length=50, blank=False, null=True)
     
 
 
@@ -51,3 +51,10 @@ class Treatment(models.Model):
     # timing = models.CharField(max_length=50, blank=False, null=True)
     value = models.FloatField(blank=False, null=True)
     type_of_treatment = models.CharField(max_length=50, blank=False, null=True)
+
+class Product(models.Model):
+    product_id = models.BigAutoField(primary_key=True)
+    trial_id = models.ForeignKey(Trial, on_delete=models.CASCADE, blank=True, null=True)
+    hybrid = models.CharField(max_length=10, blank=False, null=True)
+    name = models.CharField(max_length=10, blank=False, null=True)
+    treatment = models.IntegerField(blank=False, null=True) 
