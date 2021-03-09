@@ -14,29 +14,6 @@ class Trial_Form(forms.ModelForm):
         model = Trial
         fields = ['crop', 'latitude', 'longitude', 'date', 'notes', 'user']
 
-# class Products_Form(forms.ModelForm):
-#     product = forms.CharField(error_messages={'required':'Please enter your products'})
-#     timing = forms.CharField(error_messages={'required':'Please enter your timing'})
-#     rate = forms.FloatField(error_messages={'required':'Please enter your date'})
-#     rate_unit = forms.CharField(error_messages={'required':'Please enter your value'})
-#     treatment_id = forms.CharField(error_messages={'required':'Please enter your username'})
-    
-#     class Meta:
-#         model = Product
-#         fields = ['product', 'timing', 'rate', 'rate_unit', 'treatment_id']
-
-class Treatments_Form(forms.ModelForm):
-    treatment = forms.CharField(error_messages={'required':'Please enter your product'})
-    treatment_name = forms.CharField(error_messages={'required':'Please enter your timing'})
-    # unit = forms.CharField(error_messages={'required':'Please enter your timing'})
-    # timing = forms.CharField(error_messages={'required':'Please enter your date'})
-    value = forms.FloatField(error_messages={'required':'Please enter your value'})
-    type_of_treatment = forms.CharField(error_messages={'required':'Please enter your username'})
-
-    class Meta:
-        model = Treatment
-        fields = ['treatment','treatment_name', 'value', 'type_of_treatment']
-
 class Grower_Form(forms.ModelForm):
     name = forms.CharField(error_messages={'required':'Please enter your timing'})
     email = forms.EmailField(error_messages={'required':'Please enter your date'})

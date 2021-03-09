@@ -24,23 +24,7 @@ def measurements(request):
         form.save()
 
     return render(request, 'trials/measurements_info.html')
-
-
-# def products(request):
-#     products_infor = Product.objects.all()
-#     treatments_info = Treatment.objects.all()
-#     form = Products_Form(request.POST or None)
-#     if request.method == 'POST' and form.is_valid():
-#         form.save()
-
-#     return render(request, 'trials/products_info.html', {"Products": products_infor, "Treatment":treatments_info})
     
-def treatments(request):
-    form = Treatments_Form(request.POST or None)
-    if request.method == 'POST' and form.is_valid():
-        form.save()
-    return render(request, 'trials/treatments_info.html')
-
 def products(request):
     template = 'trials/products_info.html'
     product_set = formset_factory(ProductForm)

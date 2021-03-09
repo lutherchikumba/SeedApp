@@ -1,7 +1,7 @@
 from django.test import SimpleTestCase
 from django.test import TestCase
 from django.utils import timezone
-from trials.forms import Trial_Form, Products_Form, Treatments_Form, Grower_Form, Measurements_Form
+from trials.forms import Trial_Form, ProductForm, Grower_Form, Measurements_Form
 
 class TestForms (TestCase):
 
@@ -24,35 +24,18 @@ class TestForms (TestCase):
         self.assertEquals(len(form.errors), 6)
 
     def test_products_form_valid_data(self):
-        form = Products_Form(data={
+        form = ProductForm(data={
             'product': 'GPS',
             'timing': 'V1',
             'rate': 2.1,
-            'rate_unit': 'oz/a',
-            'treatment_id': '4'
+            'unit': 'oz/a',
+            'treatment': '4'
         })
 
         self.assertTrue(form.is_valid())
 
     def test_product_form_no_data(self):
-        form = Products_Form(data={})
-
-        self.assertFalse(form.is_valid())
-        self.assertEquals(len(form.errors), 5)
-
-    def test_treatments_form_valid_data(self):
-        form = Treatments_Form(data={
-            'treatment': 'luther',
-            'unit': 'bu/a',
-            'timing': 'v56',
-            'value': 125,
-            'type_of_treatment': 'dell'
-        })
-
-        self.assertTrue(form.is_valid())
-
-    def test_treatments_form_no_data(self):
-        form = Treatments_Form(data={})
+        form = ProductForm(data={})
 
         self.assertFalse(form.is_valid())
         self.assertEquals(len(form.errors), 5)
