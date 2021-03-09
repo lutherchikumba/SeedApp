@@ -1,7 +1,7 @@
 from django.test import TestCase, Client
 from django.urls import reverse
 from django.test import RequestFactory
-from trials.models import Grower, Trial, Product, Treatment, Measure
+from trials.models import Grower, Trial, Product, Measure
 import json
 
 class TestViews (TestCase):
@@ -12,7 +12,6 @@ class TestViews (TestCase):
         self.trials_url = reverse('trial_name')
         self.measurements_url = reverse('measurements')
         self.products_url = reverse('product_name')
-        self.treatments_url = reverse('treatments')
 
     def test_project_home_GET(self):
 
@@ -47,12 +46,5 @@ class TestViews (TestCase):
 
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response,  'trials/products_info.html')
-
-    def test_project_treatments_GET(self):
-
-        response = self.client.get(self.treatments_url)
-
-        self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, 'trials/treatments_info.html')
 
 

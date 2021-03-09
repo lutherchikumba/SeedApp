@@ -24,7 +24,6 @@ def measurements(request):
         form.save()
 
     return render(request, 'trials/measurements_info.html')
-    
 def products(request):
     template = 'trials/products_info.html'
     product_set = formset_factory(ProductForm)
