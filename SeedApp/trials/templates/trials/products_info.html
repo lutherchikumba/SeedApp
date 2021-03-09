@@ -1,23 +1,35 @@
 {% extends 'trials/main.html' %}
+{% load static %}
+{% block content%}
 
-{% block content %}
-
-<form method="POST" action="{% url 'product_name' %}" enctype="application/x-www-form-urlencoded">
+<form id="form" method="post">
     {% csrf_token %}
-    <div class="form-group">
-    <label for="exampleInputName">Product Name</label>
-    <input type="text" class="form-control" name="product" aria-describedby="product" placeholder="Enter here ...">
-    <label for="exampleInputName">Timing</label>
-    <input type="text" class="form-control" name="timing" aria-describedby="timing" placeholder="Enter here ...">
-    <label for="exampleInputName">Rate</label>
-    <input type="text" class="form-control" name="rate" aria-describedby="rate" placeholder="Enter here ...">
-    <label for="exampleInputName">Rate Unit</label>
-    <input type="text" class="form-control" name="rate_unit" aria-describedby="rate_unit" placeholder="Enter here ...">
-    <label for="exampleInputName">Treatment</label>
-    <input type="text" class="form-control" name="treatment_id" aria-describedby="treatment_id" placeholder="Enter here ...">
+    {{formset.management_form}}
+    <input type="hidden" id="NumberOfTreatments" value={{num}}>
+    {% for form in formset%}
+        <div class="C-{{form.treatment.value}}">
+        {% ifchanged %}
+            <br>
+            <br>
+            <h3>Treatment-{{form.treatment.value}}</h3>
+            <button type="button" class="addP" id="addP-{{form.treatment.value}}">+Product</button>
+            <button type="button" class="subP" id="subP-{{form.treatment.value}}">-Product</button>
+            <hr>
+    {%endifchanged%}
+            <div class="P-{{forloop.counter}}">
+            {{ form.as_table }}<br>
+            </div>
+            
+        </div>
+    {% endfor %}
+    <button type="button" id="addTreatment">+Treatment</button> 
+    <button type="button" id="subTreatment">-Treatment</button>
+    <input id="submit" type="submit" value="Submit">
 
-    </div>   
-    <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+
+<!-- <script src="{% static 'js/main.js' %}"></script> -->
+<script type="text/javascript" src ="{% static 'js/products.js' %}"></script>
+
 
 {% endblock %}
