@@ -46,12 +46,17 @@ def products(request):
     product_set = formset_factory(ProductForm)
     data ={'form-TOTAL_FORMS': '2',
            'form-INITIAL_FORMS': '0',
-           'form-0-name': '-----',
-           'form-0-hybrid': '------',
+           'form-0-product': '-----',
+           'form-0-timing': '------',
+           'form-0-rate': '-----',
+           'form-0-unit': '------',
            'form-0-treatment': '1',
-           'form-1-name': '-----',
-           'form-1-hybrid': '------',
-           'form-1-treatment': '2'}
+           'form-1-product': '-----',
+           'form-1-timing': '------',
+           'form-1-rate': '-----',
+           'form-1-unit': '------',
+           'form-1-treatment': '2'
+           }
     formset = product_set(data)
     context = {'formset': formset, 'num': '2'}
 
@@ -61,6 +66,7 @@ def products(request):
             for form in formset:
                 if form.is_valid():
                     print('ok')
+                    form.save()
 
     return render(request, template, context)
 

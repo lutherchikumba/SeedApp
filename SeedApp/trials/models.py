@@ -55,6 +55,8 @@ class Treatment(models.Model):
 class Product(models.Model):
     product_id = models.BigAutoField(primary_key=True)
     trial_id = models.ForeignKey(Trial, on_delete=models.CASCADE, blank=True, null=True)
-    hybrid = models.CharField(max_length=10, blank=False, null=True)
-    name = models.CharField(max_length=10, blank=False, null=True)
+    product = models.CharField(max_length=50, blank=False, null=True)
+    timing = models.CharField(max_length=50, blank=False, null=True)
+    rate = models.CharField(max_length=50, blank=False, null=True)
+    unit = models.CharField(max_length=50, blank=False, null=True)
     treatment = models.IntegerField(blank=False, null=True) 
