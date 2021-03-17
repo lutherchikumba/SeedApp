@@ -42,4 +42,4 @@ class ProductForm(ModelForm):
 
     class Meta:
         model = Product 
-        fields = '__all__'
+        fields = ['product','rate', 'timing','unit', 'treatment']

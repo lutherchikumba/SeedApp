@@ -14,8 +14,9 @@ def home(request):
 def trials(request):
     form = Trial_Form(request.POST or None)
     if request.method == 'POST' and form.is_valid():
+        id = Trial.objects.latest('trial_id')
         form.save()
-        return redirect('product_name')
+        return redirect('product_name',pk=id.trial_id + 1)
     else:
         return render(request, 'trials/trials_info.html')
 
@@ -25,7 +26,7 @@ def measurements(request):
         form.save()
 
     return render(request, 'trials/measurements_info.html')
-def products(request):
+def products(request, pk):
     template = 'trials/products_info.html'
     product_set = formset_factory(ProductForm)
     data ={'form-TOTAL_FORMS': '2',
@@ -50,6 +51,8 @@ def products(request):
             for form in formset:
                 if form.is_valid():
                     print('ok')
+                    form = form.save(False)
+                    form.trial_id = Trial.objects.get(pk = pk)
                     form.save()
 
     return render(request, template, context)
