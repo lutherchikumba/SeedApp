@@ -15,8 +15,9 @@ def trials(request):
     form = Trial_Form(request.POST or None)
     if request.method == 'POST' and form.is_valid():
         form.save()
-
-    return render(request, 'trials/trials_info.html')
+        return redirect('product_name')
+    else:
+        return render(request, 'trials/trials_info.html')
 
 def measurements(request):
     form = Measurements_Form(request.POST or None)

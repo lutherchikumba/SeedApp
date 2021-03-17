@@ -15,10 +15,10 @@ class Trial_Form(forms.ModelForm):
         fields = ['crop', 'latitude', 'longitude', 'date', 'notes', 'user']
 
 class Grower_Form(forms.ModelForm):
-    name = forms.CharField(error_messages={'required':'Please enter your timing'})
-    email = forms.EmailField(error_messages={'required':'Please enter your date'})
-    phone = forms.CharField(error_messages={'required':'Please enter your value'})
-    zip_code = forms.IntegerField(error_messages={'required':'Please enter your username'})
+    name = forms.CharField(error_messages={'required':'Please enter your name'})
+    email = forms.EmailField(error_messages={'required':'Please enter your email'})
+    phone = forms.CharField(error_messages={'required':'Please enter your contact'})
+    zip_code = forms.IntegerField(error_messages={'required':'Please enter your zipcode'})
 
 
     class Meta:
@@ -26,11 +26,11 @@ class Grower_Form(forms.ModelForm):
         fields = ['name','email', 'phone', 'zip_code']
 
 class Measurements_Form(forms.ModelForm):
-    measure = forms.CharField(error_messages={'required':'Please enter your timing'})
-    unit = forms.CharField(error_messages={'required':'Please enter your date'})
-    timing = forms.CharField(error_messages={'required':'Please enter your value'})
-    value = forms.FloatField(error_messages={'required':'Please enter your username'})
-    type = forms.CharField(error_messages={'required':'Please enter your username'})
+    measure = forms.CharField(error_messages={'required':'Please enter your measure'})
+    unit = forms.CharField(error_messages={'required':'Please enter your unit of measurement'})
+    timing = forms.CharField(error_messages={'required':'Please enter the time'})
+    value = forms.FloatField(error_messages={'required':'Please enter your value of measurement'})
+    type = forms.CharField(error_messages={'required':'Please enter your type of measuremet'})
 
 
     class Meta:
