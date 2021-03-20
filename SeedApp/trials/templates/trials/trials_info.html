@@ -1,7 +1,9 @@
 {% extends 'trials/main.html' %}
-
+{% load static %}
 {% block content %}
-<form method="POST" action="{% url 'trial_name' %}" enctype="application/x-www-form-urlencoded">
+<link rel ="stylesheet" type = "text/css" href = "{% static '/css/products.css' %}">
+<script type="text/javascript" src ="{% static 'js/products.js' %}"></script>
+<form method="POST"  enctype="application/x-www-form-urlencoded">
     {% csrf_token %}
     <div class="form-group">
     <label for="exampleInputName">Crop Name</label>
@@ -20,5 +22,10 @@
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
-
+<hr>
+  <body>
+    <div id="map">
+        
+    </div>
+  </body>
 {% endblock%}
