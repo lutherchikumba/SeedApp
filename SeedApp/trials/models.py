@@ -21,6 +21,7 @@ class Trial(models.Model):
     notes = models.CharField(max_length=50, blank=False, null=True)
     user = models.CharField(max_length=50, null=True)
 
+
 class Measure(models.Model):
     measure_id = models.BigAutoField(primary_key=True)
     trial_id = models.ForeignKey(Trial, on_delete=models.CASCADE, blank=True, null=True)
@@ -28,7 +29,7 @@ class Measure(models.Model):
     unit = models.CharField(max_length=50, blank=False, null=True)
     timing = models.CharField(max_length=50, blank=False, null=True)
     value = models.FloatField(blank=False, null=True)
-    type = models.CharField(max_length=50, blank=False, null=True)
+    treatment = models.IntegerField(blank=False, null=True)
 
 
 class Product(models.Model):
