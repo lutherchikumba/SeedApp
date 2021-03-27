@@ -8,7 +8,17 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Navbar</h1>
+    <h1>Dash board</h1>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#">Trial</a>
+        <a href="#">Reports</a>
+        <a href="#">Grower</a>
+        <a href="#">About</a>
+        <a href="#">Logout</a>
+        
+    </div>
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
     <hr>
 
     {% block content %}
@@ -19,5 +29,13 @@
     <h5>
         Our footer
     </h5>
+
+    <script type="text/javascript" src ="{% static 'js/main.js' %}"></script>
+    <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjxVKwN51AI7iwPuZL3mRG67lDdAyqFKE&callback=initMap&libraries=&v=weekly"
+    async
+  ></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
 </body>
 </html>

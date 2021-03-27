@@ -1,0 +1,10 @@
+/*green1 = #88D600,
+  green2 = #4C9E00,
+  blue1 = #226398,
+  blue2 = #B8EDE2,
+  red = #8C1D23,
+  brown = #482B17,
+  gray1 = #BEBEBE,
+  gray2 = #828587,
+  ltgray1 = #F1F0F2,
+  ltgray2 = #DCDDDF */
