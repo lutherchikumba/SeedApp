@@ -1,48 +1,4 @@
 
-      // function openNav() {
-      //   document.getElementById("mySidenav").style.width = "250px";
-      //   document.getElementById("main").style.marginLeft = "250px";
-      //   document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
-      // }
-      
-      // function closeNav() {
-      //   document.getElementById("mySidenav").style.width = "0";
-      //   document.getElementById("main").style.marginLeft= "0";
-      //   document.body.style.backgroundColor = "white";
-      // }
-
-      // function getvalues(){
-      //   var seleted = new Array();
-      //   var chkbox=document.getElementById("tabl");
-      //   var selchk = chkbox.getElementsByTagName("input");
-      //   for(var i = 0; i<selchk.length;i++){
-      //     if(selchk[i].checked){
-      //         seleted.push(selchk[i].value);
-      //     }
-      //   }
-
-      //   seleted = seleted.join("<br>");
-      //   if(seleted.length > 0){
-      //       document.getElementById("display_values").innerHTML = seleted ;
-      //   }
-      // };
-
-      // $(document).ready(function()
-      // {
-      //   $('.chkcvalues').click(function()
-      //   {
-      //     var txt = "";
-      //     $('chkcvalues:checked').each(function()
-      //     {
-      //       txt+=$(this).val()+","
-      //     });
-      //     txt = txt.substring(0, txt.length-1);
-      //     $('#txtvalues').val(txt);
-      //   });
-
-      // });
-
-
 var t1copy = $( ".C-1" ).clone( true );
 var p1copy = $( ".P-1" ).clone( true );
 
@@ -158,4 +114,34 @@ function addT(treatment, t, id) {
         $(".C-"+id).append(newElement);
         $('#id_form-' + (total-1) +'-treatment').val(id);
     }
+}
+
+function initMap() {
+  const myLatlng = { lat: 38.870947770787254, lng: -105.14251562500002 };
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 4,
+    center: myLatlng,
+  });
+  // Create the initial InfoWindow.
+  let infoWindow = new google.maps.InfoWindow({
+    content: "Click the map to get Lat/Lng!",
+    position: myLatlng,
+  });
+  infoWindow.open(map);
+  // Configure the click listener.
+  map.addListener("click", (mapsMouseEvent) => {
+    // Close the current InfoWindow.
+    infoWindow.close();
+    // Create a new InfoWindow.
+    infoWindow = new google.maps.InfoWindow({
+      position: mapsMouseEvent.latLng,
+      
+      
+    });
+    infoWindow.setContent(
+      JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
+    );
+    infoWindow.open(map);
+  });
+
 }
