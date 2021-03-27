@@ -2,30 +2,24 @@
 {% load static %}
 {% block content %}
 <link rel ="stylesheet" type = "text/css" href = "{% static '/css/products.css' %}">
-<script type="text/javascript" src ="{% static 'js/products.js' %}"></script>
+<script type="text/javascript" src ="{% static 'js/trials.js' %}"></script>
 <form method="POST"  enctype="application/x-www-form-urlencoded">
     {% csrf_token %}
     <div class="form-group">
-    <label for="exampleInputName">Crop Name</label>
+    <label>Crop Name</label>
     <input type="text" class="form-control" name="crop" aria-describedby="crop" placeholder="Enter here ...">
-    <label for="exampleInputName">Latitude</label>
-    <input type="text" class="form-control" name="latitude" aria-describedby="latitude" placeholder="Enter here ...">
-    <label for="exampleInputName">Longitude</label>
-    <input type="text" class="form-control" name="longitude" aria-describedby="longitude" placeholder="Enter here ...">
-    <label for="exampleInputName">Date</label>
-    <input type="text" class="form-control" name="date" aria-describedby="date" placeholder="Enter here ...">
-    <label for="exampleInputName">Notes</label>
+    <label>Latitude</label>
+    <input type="text" class="form-control" id="lat" name="latitude" aria-describedby="latitude" placeholder="Enter here ...">
+    <label>Longitude</label>
+    <input type="text" class="form-control" id="lng" name="longitude" aria-describedby="longitude" placeholder="Enter here ...">
+    <label>Notes</label>
     <input type="text" class="form-control" name="notes" aria-describedby="notes" placeholder="Enter here ...">
-    <label for="exampleInputName">User Name</label>
+    <label>User Name</label>
     <input  type="text" class="form-control" name="user" aria-describedby="user" placeholder="Enter here ...">
     </div>   
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-
 <hr>
-  <body>
-    <div id="map">
-        
-    </div>
-  </body>
+    <div id="map"></div>
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 {% endblock%}

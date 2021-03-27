@@ -1,0 +1,17 @@
+.wrapper{
+  background: #ffffff;
+  padding: 5px;
+  border: 3px solid #BEBEBE;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+#map{
+   height: 500px;
+}
+#bar{
+   height: 300px;
+}
+#pie{
+   height: 300px;
+   padding:10px;
+}

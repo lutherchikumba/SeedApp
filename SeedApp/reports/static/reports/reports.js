@@ -48,5 +48,18 @@ function chart(trial){
     return div.node();
 }
 
+var bar = c3.generate({
+    bindto: '#barG',
+    data: {
+    type:'bar',
+      columns: [['sample', 30, 200, 150],]
+    }
+});
 
-
+var pie = c3.generate({
+    bindto: '#pieG',
+    data: {
+    type:'pie',
+      columns: [['data1', 30],['data2', 40], ['data3', 30]]
+    }
+});

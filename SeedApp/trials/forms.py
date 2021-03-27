@@ -6,13 +6,12 @@ class Trial_Form(forms.ModelForm):
     latitude = forms.FloatField(error_messages={'required':'Please enter your latitude'})
     longitude = forms.FloatField(error_messages={'required':'Please enter your longitude'})
     crop = forms.CharField(error_messages={'required':'Please enter your crop'})
-    date = forms.DateField(error_messages={'required':'Please enter your date'})
     notes = forms.CharField(error_messages={'required':'Please enter your notes'})
     user = forms.CharField(error_messages={'required':'Please enter your username'})
 
     class Meta:
         model = Trial
-        fields = ['crop', 'latitude', 'longitude', 'date', 'notes', 'user']
+        fields = ['crop', 'latitude', 'longitude','notes', 'user']
 
 class Grower_Form(forms.ModelForm):
     name = forms.CharField(error_messages={'required':'Please enter your name'})
