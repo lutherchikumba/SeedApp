@@ -1,8 +1,14 @@
 from django.shortcuts import render, redirect
 from django.forms import formset_factory
 from django.http import HttpResponse
-from .models import *
-from .forms import *
+from .models import Grower
+from .models import Trial
+from .models import Measure
+from .models import Product
+from .forms import Trial_Form
+from .forms import Grower_Form
+from .forms import Measurements_Form
+from .forms import ProductForm
 
 # Create your views here.
 def home(request):
@@ -60,7 +66,5 @@ def measurements(request, pk):
         form.save()
         return redirect('trial_name')
     return render(request, 'trials/measurements_info.html')
-
-
 
 

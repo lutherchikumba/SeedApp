@@ -10,7 +10,6 @@ class TestForms (TestCase):
             'latitude': 40,
             'longitude': -110,
             'crop': 'corn',
-            'date': timezone.now(),
             'notes': 'This is a test.',
             'user': 'rasMaluda'
         })
@@ -21,7 +20,7 @@ class TestForms (TestCase):
         form = Trial_Form(data={})
 
         self.assertFalse(form.is_valid())
-        self.assertEquals(len(form.errors), 6)
+        self.assertEquals(len(form.errors), 5)
 
     def test_products_form_valid_data(self):
         form = ProductForm(data={

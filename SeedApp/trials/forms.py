@@ -1,6 +1,9 @@
 from django import forms
 from django.forms import ModelForm
-from .models import *
+from .models import Grower
+from .models import Trial
+from .models import Measure
+from .models import Product
 
 class Trial_Form(forms.ModelForm):
     latitude = forms.FloatField(error_messages={'required':'Please enter your latitude'})

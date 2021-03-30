@@ -29,11 +29,11 @@ class TestModels(TestCase):
         )
 
         self.measure = Measure.objects.create(
-        measure = 'yeild', 
+        measure = 'yeild',
         unit = 'bu/a',
         timing = 'Harvest' , 
         value = 120,
-        type = '1'
+        treatment = '1'
         )
     
     
@@ -66,5 +66,5 @@ class TestModels(TestCase):
         self.assertEquals(self.measure.unit, 'bu/a')
         self.assertEquals(self.measure.timing, 'Harvest')
         self.assertEquals(self.measure.value,120)
-        self.assertEquals(self.measure.type, '1')
+        self.assertEquals(self.measure.treatment, '1')
     
