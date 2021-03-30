@@ -27,17 +27,17 @@ class Grower_Form(forms.ModelForm):
         model = Grower
         fields = ['name','email', 'phone', 'zip_code']
 
-class Measurements_Form(forms.ModelForm):
-    measure = forms.CharField(error_messages={'required':'Please enter your measure'})
-    unit = forms.CharField(error_messages={'required':'Please enter your unit of measurement'})
-    timing = forms.CharField(error_messages={'required':'Please enter the time'})
-    value = forms.FloatField(error_messages={'required':'Please enter your value of measurement'})
-    type = forms.CharField(error_messages={'required':'Please enter your type of measuremet'})
+# class Measurements_Form(forms.ModelForm):
+#     measure = forms.CharField(error_messages={'required':'Please enter your measure'})
+#     unit = forms.CharField(error_messages={'required':'Please enter your unit of measurement'})
+#     timing = forms.CharField(error_messages={'required':'Please enter the time'})
+#     value = forms.FloatField(error_messages={'required':'Please enter your value of measurement'})
+#     treatment = forms.CharField(error_messages={'required':'Please enter your type of measuremet'})
 
 
-    class Meta:
-        model = Measure
-        fields = ['measure','unit', 'timing','value', 'type']
+#     class Meta:
+#         model = Measure
+#         fields = ['measure','unit', 'timing','value', 'type']
 
 class ProductForm(ModelForm):
     treatment = forms.IntegerField(widget = forms.HiddenInput(), required=True)
@@ -45,3 +45,10 @@ class ProductForm(ModelForm):
     class Meta:
         model = Product 
         fields = ['product','rate', 'timing','unit', 'treatment']
+
+class Measurements_Form(ModelForm):
+    treatment = forms.IntegerField(widget = forms.HiddenInput(), required=True)
+
+    class Meta:
+        model = Measure 
+        fields = ['measure','unit','timing', 'value', 'treatment']

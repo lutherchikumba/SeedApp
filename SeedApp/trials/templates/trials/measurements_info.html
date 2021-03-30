@@ -1,23 +1,38 @@
 <!DOCTYPE html>
-{% extends 'trials/main.html' %}
+{% load static %}
+{% block content%}
 
-{% block content %}
-<form method="POST"  enctype="application/x-www-form-urlencoded">  
+<form id="form" method="post">
     {% csrf_token %}
-    <div class="form-group">
-    <label for="exampleInputName">Measure </label>
-    <input type="text" class="form-control" name="measure" aria-describedby="measure" placeholder="Enter here ...">
-    <label for="exampleInputName">Unit</label>
-    <input type="text" class="form-control" name="unit" aria-describedby="unit" placeholder="Enter here ...">
-    <label for="exampleInputName">Timing</label>
-    <input type="text" class="form-control" name="timing" aria-describedby="timing" placeholder="Enter here ...">
-    <label for="exampleInputName">Value</label>
-    <input type="text" class="form-control" name="value" aria-describedby="value" placeholder="Enter here ...">
-    <label for="exampleInputName">Type</label>
-    <input type="text" class="form-control" name="type" aria-describedby="type" placeholder="Enter here ...">
-    </div>   
-    <button type="submit" class="btn btn-primary">Submit</button>
+    {{formset.management_form}}
+    <input type="hidden" id="NumberOfTreatments" value={{num}}>
+    {% for form in formset%}
+        <div class="C-{{form.treatment.value}}">
+        {% ifchanged %}
+            <br>
+            <br>
+            <h3>T-{{form.treatment.value}}</h3>
+            <button type="button" class="addP" id="addP-{{form.treatment.value}}">+Measurement</button>
+            <button type="button" class="subP" id="subP-{{form.treatment.value}}">-Measurement</button>
+            <hr>
+    {%endifchanged%}
+            <div class="P-{{forloop.counter}}">
+            {{ form.as_table }}<br>
+            </div>
+            
+        </div>
+    {% endfor %}
+    <button type="button" id="addTreatment">+Treatment</button> 
+    <button type="button" id="subTreatment">-Treatment</button>
+    <input id="submit" type="submit" value="Submit">
+
 </form>
+
+<!-- <script src="{% static 'js/main.js' %}"></script> -->
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<script type="text/javascript" src ="{% static 'js/measurements.js' %}"></script>
+
+
 
 
 {% endblock %}
