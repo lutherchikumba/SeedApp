@@ -2,6 +2,7 @@ from django import forms
 from django.forms import ModelForm
 from .models import *
 
+
 class Trial_Form(forms.ModelForm):
     latitude = forms.FloatField(error_messages={'required':'Please enter your latitude'})
     longitude = forms.FloatField(error_messages={'required':'Please enter your longitude'})
@@ -36,9 +37,22 @@ class Measurements_Form(forms.ModelForm):
         model = Measure
         fields = ['measure','unit', 'timing','value', 'type']
 
+
 class ProductForm(ModelForm):
     treatment = forms.IntegerField(widget = forms.HiddenInput(), required=True)
 
     class Meta:
         model = Product 
         fields = ['product','rate', 'timing','unit', 'treatment']
+
+
+class Filters(forms.Form):
+    countries = forms.ModelChoiceField(queryset=CountryList.objects.order_by('name'),
+                                       to_field_name='name', empty_label="ALL")
+    products = forms.ModelChoiceField(queryset=ProductList.objects.order_by('name'),
+                                      to_field_name='name', empty_label="ALL")
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['countries'].widget.attrs.update({'class': 'wrapper'})
+        self.fields['products'].widget.attrs.update({'class': 'wrapper'})

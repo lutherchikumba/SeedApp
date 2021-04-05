@@ -39,4 +39,23 @@ class Product(models.Model):
     timing = models.CharField(max_length=50, blank=False, null=True)
     rate = models.CharField(max_length=50, blank=False, null=True)
     unit = models.CharField(max_length=50, blank=False, null=True)
-    treatment = models.IntegerField(blank=False, null=True) 
+    treatment = models.IntegerField(blank=False, null=True)
+
+
+class ProductList(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    name = models.CharField(max_length=50, blank=False, null=True)
+    description = models.CharField(max_length=100, blank=False, null=True)
+
+    def __str__(self):
+        return self.name
+
+
+class CountryList(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    name = models.CharField(max_length=50, blank=False, null=True)
+    description = models.CharField(max_length=100, blank=False, null=True)
+
+    def __str__(self):
+        return self.name
+
