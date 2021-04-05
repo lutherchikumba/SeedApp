@@ -61,7 +61,7 @@ class TestForms (TestCase):
             'unit': 'bu/z',
             'timing': 'Harvesting',
             'value': 20,
-            'type': '3'
+            'treatment': '3'
         })
 
         self.assertTrue(form.is_valid())
