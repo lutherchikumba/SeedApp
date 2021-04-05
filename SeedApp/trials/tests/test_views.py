@@ -10,8 +10,8 @@ class TestViews (TestCase):
         self.client = Client()
         self.dashboard_url = reverse('dashboard')
         self.trials_url = reverse('trial_name')
-        self.measurements_url = reverse('measurements')
-        self.products_url = reverse('product_name')
+        self.measurements_url = reverse('measurement_name', args=[59])
+        self.products_url = reverse('product_name', args=[59])
 
     def test_project_home_GET(self):
 
@@ -39,6 +39,7 @@ class TestViews (TestCase):
 
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'trials/measurements_info.html')
+        # self.assertRedirects(response, 'trial_name')
 
     def test_project_products_GET(self):
 

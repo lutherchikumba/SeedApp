@@ -1,6 +1,9 @@
 from django import forms
 from django.forms import ModelForm
-from .models import *
+from .models import Grower
+from .models import Trial
+from .models import Measure
+from .models import Product
 
 
 class Trial_Form(forms.ModelForm):
@@ -25,17 +28,17 @@ class Grower_Form(forms.ModelForm):
         model = Grower
         fields = ['name','email', 'phone', 'zip_code']
 
-class Measurements_Form(forms.ModelForm):
-    measure = forms.CharField(error_messages={'required':'Please enter your measure'})
-    unit = forms.CharField(error_messages={'required':'Please enter your unit of measurement'})
-    timing = forms.CharField(error_messages={'required':'Please enter the time'})
-    value = forms.FloatField(error_messages={'required':'Please enter your value of measurement'})
-    type = forms.CharField(error_messages={'required':'Please enter your type of measuremet'})
+# class Measurements_Form(forms.ModelForm):
+#     measure = forms.CharField(error_messages={'required':'Please enter your measure'})
+#     unit = forms.CharField(error_messages={'required':'Please enter your unit of measurement'})
+#     timing = forms.CharField(error_messages={'required':'Please enter the time'})
+#     value = forms.FloatField(error_messages={'required':'Please enter your value of measurement'})
+#     treatment = forms.CharField(error_messages={'required':'Please enter your type of measuremet'})
 
 
-    class Meta:
-        model = Measure
-        fields = ['measure','unit', 'timing','value', 'type']
+#     class Meta:
+#         model = Measure
+#         fields = ['measure','unit', 'timing','value', 'type']
 
 
 class ProductForm(ModelForm):
@@ -45,6 +48,7 @@ class ProductForm(ModelForm):
         model = Product 
         fields = ['product','rate', 'timing','unit', 'treatment']
 
+<<<<<<< HEAD
 
 class Filters(forms.Form):
     countries = forms.ModelChoiceField(queryset=CountryList.objects.order_by('name'),
@@ -56,3 +60,11 @@ class Filters(forms.Form):
         super().__init__(*args, **kwargs)
         self.fields['countries'].widget.attrs.update({'class': 'wrapper'})
         self.fields['products'].widget.attrs.update({'class': 'wrapper'})
+=======
+class Measurements_Form(ModelForm):
+    treatment = forms.IntegerField(widget = forms.HiddenInput(), required=True)
+
+    class Meta:
+        model = Measure 
+        fields = ['measure','unit','timing', 'value', 'treatment']
+>>>>>>> cb493c84bb33a09957a2882e563e8cbbb5fbc6bd

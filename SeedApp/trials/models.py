@@ -28,7 +28,7 @@ class Measure(models.Model):
     measure = models.CharField(max_length=50, blank=False, null=True)
     unit = models.CharField(max_length=50, blank=False, null=True)
     timing = models.CharField(max_length=50, blank=False, null=True)
-    value = models.FloatField(blank=False, null=True)
+    value = models.CharField(max_length=50, blank=False, null=True)
     treatment = models.IntegerField(blank=False, null=True)
 
 
