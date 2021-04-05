@@ -58,15 +58,6 @@ def products(request, pk):
 
     return render(request, template, context)
 
-# def measurements(request, pk):
-#     form = Measurements_Form(request.POST or None)
-#     if request.method == 'POST' and form.is_valid():
-#         form = form.save(False)
-#         form.trial_id = Trial.objects.get(pk = pk)
-#         form.save()
-#         return redirect('trial_name')
-#     return render(request, 'trials/measurements_info.html')
-
 def measurements(request, pk):
     template = 'trials/measurements_info.html'
     measurement_set = formset_factory(Measurements_Form)
