@@ -5,18 +5,19 @@
 <script type="text/javascript" src ="{% static 'js/trials.js' %}"></script>
 <form method="POST"  enctype="application/x-www-form-urlencoded">
     {% csrf_token %}
-    <div class="form-group">
-    <label>Crop Name</label>
-    <input type="text" class="form-control" name="crop" aria-describedby="crop" placeholder="Enter here ...">
-    <label>Latitude</label>
-    <input type="text" class="form-control" id="lat" name="latitude" aria-describedby="latitude" placeholder="Enter here ...">
-    <label>Longitude</label>
-    <input type="text" class="form-control" id="lng" name="longitude" aria-describedby="longitude" placeholder="Enter here ...">
-    <label>Notes</label>
-    <input type="text" class="form-control" name="notes" aria-describedby="notes" placeholder="Enter here ...">
-    <label>User Name</label>
-    <input  type="text" class="form-control" name="user" aria-describedby="user" placeholder="Enter here ...">
-    </div>   
+    {{form}}
+<!--    <div class="form-group">-->
+<!--    <label>Crop Name</label>-->
+<!--    <input type="text" class="form-control" name="crop" aria-describedby="crop" placeholder="Enter here ...">-->
+<!--    <label>Latitude</label>-->
+<!--    <input type="text" class="form-control" id="lat" name="latitude" aria-describedby="latitude" placeholder="Enter here ...">-->
+<!--    <label>Longitude</label>-->
+<!--    <input type="text" class="form-control" id="lng" name="longitude" aria-describedby="longitude" placeholder="Enter here ...">-->
+<!--    <label>Notes</label>-->
+<!--    <input type="text" class="form-control" name="notes" aria-describedby="notes" placeholder="Enter here ...">-->
+<!--    <label>User Name</label>-->
+<!--    <input  type="text" class="form-control" name="user" aria-describedby="user" placeholder="Enter here ...">-->
+<!--    </div>   -->
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 <hr>

@@ -19,6 +19,7 @@ class Trial(models.Model):
     crop = models.CharField(max_length=50, blank=False, null=True)
     date = models.DateField(default=timezone.now, blank=False, null=True)
     notes = models.CharField(max_length=50, blank=False, null=True)
+    country = models.CharField(max_length=50, blank=False, null=True)
     user = models.CharField(max_length=50, null=True)
 
 

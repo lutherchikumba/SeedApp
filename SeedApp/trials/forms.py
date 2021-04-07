@@ -10,13 +10,16 @@ from .models import CountryList, ProductList, CropList
 class Trial_Form(forms.ModelForm):
     latitude = forms.FloatField(error_messages={'required':'Please enter your latitude'})
     longitude = forms.FloatField(error_messages={'required':'Please enter your longitude'})
-    crop = forms.CharField(error_messages={'required':'Please enter your crop'})
+    crop = forms.ModelChoiceField(queryset=CropList.objects.order_by('name'),
+                           to_field_name='name', empty_label="Select Crop")
+    country = forms.ModelChoiceField(queryset=CountryList.objects.order_by('name'),
+                                  to_field_name='name', empty_label="Select Country")
     notes = forms.CharField(error_messages={'required':'Please enter your notes'})
-    user = forms.CharField(error_messages={'required':'Please enter your username'})
 
     class Meta:
         model = Trial
-        fields = ['crop', 'latitude', 'longitude','notes', 'user']
+        fields = ['crop', 'latitude', 'longitude', 'country', 'notes']
+
 
 class Grower_Form(forms.ModelForm):
     name = forms.CharField(error_messages={'required':'Please enter your name'})
@@ -29,22 +32,11 @@ class Grower_Form(forms.ModelForm):
         model = Grower
         fields = ['name','email', 'phone', 'zip_code']
 
-# class Measurements_Form(forms.ModelForm):
-#     measure = forms.CharField(error_messages={'required':'Please enter your measure'})
-#     unit = forms.CharField(error_messages={'required':'Please enter your unit of measurement'})
-#     timing = forms.CharField(error_messages={'required':'Please enter the time'})
-#     value = forms.FloatField(error_messages={'required':'Please enter your value of measurement'})
-#     treatment = forms.CharField(error_messages={'required':'Please enter your type of measuremet'})
-
-
-#     class Meta:
-#         model = Measure
-#         fields = ['measure','unit', 'timing','value', 'type']
-
 
 class ProductForm(ModelForm):
     treatment = forms.IntegerField(widget = forms.HiddenInput(), required=True)
-
+    product = forms.ModelChoiceField(queryset=ProductList.objects.order_by('name'),
+                                  to_field_name='name', empty_label="Select Product")
     class Meta:
         model = Product 
         fields = ['product','rate', 'timing','unit', 'treatment']

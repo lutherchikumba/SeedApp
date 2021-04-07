@@ -24,20 +24,21 @@ def trials(request):
         id = form.trial_id
         return redirect('product_name', pk = id )
     else:
-        return render(request, 'trials/trials_info.html')
+        return render(request, 'trials/trials_info.html', {'form': form})
 
 
 def products(request, pk):
     template = 'trials/products_info.html'
+    # add default data to form
     product_set = formset_factory(ProductForm)
     data ={'form-TOTAL_FORMS': '2',
            'form-INITIAL_FORMS': '0',
-           'form-0-product': '-----',
+           'form-0-product': 'GSP',
            'form-0-timing': '------',
            'form-0-rate': '-----',
            'form-0-unit': '------',
            'form-0-treatment': '1',
-           'form-1-product': '-----',
+           'form-1-product': 'GSP',
            'form-1-timing': '------',
            'form-1-rate': '-----',
            'form-1-unit': '------',
@@ -54,38 +55,31 @@ def products(request, pk):
                     form = form.save(False)
                     form.trial_id = Trial.objects.get(pk = pk)
                     form.save()
-                    # print(form.as_table())
             return redirect('measurement_name', pk = pk)
 
     return render(request, template, context)
 
-# def measurements(request, pk):
-#     form = Measurements_Form(request.POST or None)
-#     if request.method == 'POST' and form.is_valid():
-#         form = form.save(False)
-#         form.trial_id = Trial.objects.get(pk = pk)
-#         form.save()
-#         return redirect('trial_name')
-#     return render(request, 'trials/measurements_info.html')
 
 def measurements(request, pk):
     template = 'trials/measurements_info.html'
     measurement_set = formset_factory(Measurements_Form)
-    data ={'form-TOTAL_FORMS': '2',
-           'form-INITIAL_FORMS': '0',
-           'form-0-measure': '-----',
-           'form-0-unit': '------',
-           'form-0-timing': '-----',
-           'form-0-value': '-----',
-           'form-0-treatment': '1',
-           'form-1-measure': '-----',
-           'form-1-unit': '------',
-           'form-1-timing': '-----',
-           'form-1-value': '-----',
-           'form-1-treatment': '2'
-           }
+    treatments = list(Product.objects.filter(trial_id=pk))
+    treatment_list = []
+    for treatment in treatments:
+        treatment_list.append(treatment.treatment)
+    treatments_total = len(set(treatment_list))
+    data = {'form-TOTAL_FORMS': treatments_total,
+           'form-INITIAL_FORMS': '0'}
+
+    for i in range(treatments_total):
+        # add lists to empty string
+        data['form-'+str(i)+'-measure'] = '-----'
+        data['form-'+str(i)+'-unit'] = '-----'
+        data['form-'+str(i)+'-timing'] = '-----'
+        data['form-'+str(i)+'-value'] = '-----'
+        data['form-' + str(i) + '-treatment'] = str(i+1)
     formset = measurement_set(data)
-    context = {'formset': formset, 'num': '2'}
+    context = {'formset': formset, 'num': treatments_total}
 
     if request.method == "POST":
         formset = measurement_set(request.POST)
@@ -93,9 +87,9 @@ def measurements(request, pk):
             for form in formset:
                 if form.is_valid():
                     form = form.save(False)
-                    form.trial_id = Trial.objects.get(pk = pk)
+                    form.trial_id = Trial.objects.get(pk=pk)
                     form.save()
-            return redirect('trial_name')
+            return redirect('dashboard')
 
     return render(request, template, context)
 
