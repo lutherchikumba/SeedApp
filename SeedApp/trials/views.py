@@ -54,7 +54,7 @@ def products(request, pk):
                     form = form.save(False)
                     form.trial_id = Trial.objects.get(pk = pk)
                     form.save()
-                    print(form.as_table())
+                    # print(form.as_table())
             return redirect('measurement_name', pk = pk)
 
     return render(request, template, context)

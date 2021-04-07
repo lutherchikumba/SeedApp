@@ -59,3 +59,11 @@ class CountryList(models.Model):
     def __str__(self):
         return self.name
 
+class CropList(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    name = models.CharField(max_length=50, blank=False, null=True)
+    description = models.CharField(max_length=100, blank=False, null=True)
+
+    def __str__(self):
+        return self.name
+

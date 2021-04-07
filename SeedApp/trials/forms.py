@@ -4,8 +4,7 @@ from .models import Grower
 from .models import Trial
 from .models import Measure
 from .models import Product
-from .models import CountryList
-from .models import ProductList
+from .models import CountryList, ProductList, CropList
 
 
 class Trial_Form(forms.ModelForm):
@@ -51,8 +50,18 @@ class ProductForm(ModelForm):
         fields = ['product','rate', 'timing','unit', 'treatment']
 
 
+class Measurements_Form(ModelForm):
+    treatment = forms.IntegerField(widget = forms.HiddenInput(), required=True)
+
+    class Meta:
+        model = Measure 
+        fields = ['measure','unit','timing', 'value', 'treatment']
+
+
 class Filters(forms.Form):
     countries = forms.ModelChoiceField(queryset=CountryList.objects.order_by('name'),
+                                       to_field_name='name', empty_label="ALL")
+    crops = forms.ModelChoiceField(queryset=CropList.objects.order_by('name'),
                                        to_field_name='name', empty_label="ALL")
     products = forms.ModelChoiceField(queryset=ProductList.objects.order_by('name'),
                                       to_field_name='name', empty_label="ALL")
@@ -61,9 +70,4 @@ class Filters(forms.Form):
         super().__init__(*args, **kwargs)
         self.fields['countries'].widget.attrs.update({'class': 'wrapper'})
         self.fields['products'].widget.attrs.update({'class': 'wrapper'})
-class Measurements_Form(ModelForm):
-    treatment = forms.IntegerField(widget = forms.HiddenInput(), required=True)
-
-    class Meta:
-        model = Measure 
-        fields = ['measure','unit','timing', 'value', 'treatment']
+        self.fields['crops'].widget.attrs.update({'class': 'wrapper'})
