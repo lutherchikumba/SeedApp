@@ -1,29 +1,33 @@
 
 const data_value = JSON.parse(document.getElementById('data').textContent);
 const data = JSON.parse(data_value);
-
-
+var map;
 
 $(document).ready(function() {
+    update_map(data);
+});
+
+//create map function
+function update_map(data_list){
     //example cn be found https://leafletjs.com/
-    var map = L.map('map').setView([39, -99], 4);
+    map = L.map('map').setView([39, -99], 4);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    data.forEach(function(trial){
+    data_list.forEach(function(trial){
     // learn size for popups
     // create a circle for the marker and set colors based on filter
         L.marker([trial.lat, trial.lng])
             .addTo(map)
-            .bindPopup(chart(trial));
+            .bindPopup(marker_chart(trial));
     });
-});
+}
 
 // download chart
 // direc svg to canvas to png
 // html to png might work
-function chart(trial){
+function marker_chart(trial){
     var div = d3.create('div');
     var values = [];
     var names = Array(trial.measures.length).fill('');
@@ -53,11 +57,36 @@ function chart(trial){
     return div.node();
 }
 
+// get the selected filters
+$('#id_countries, #id_crops ,#id_products').change(function(){
+    var country = $('#id_countries').val();
+    var crop = $('#id_crops').val();
+    var product = $('#id_products').val();
+    var selected = data;
+
+    if (country != ''){
+        selected = selected.filter(s => s.country == country);
+    }
+    if (crop != ''){
+        selected = selected.filter(s => s.crop == crop);
+    }
+    if(product != ''){
+        selected = selected.filter(s => s.products.some(ps => ps.product == product));
+    }
+    // update markers
+    map.off();
+    map.remove();
+    update_map(selected);
+
+    //summarise data
+    //use ajax with filters to return a list with summaries
+});
+
 var bar = c3.generate({
     bindto: '#barG',
     data: {
     type:'bar',
-      columns: [['sample', 30, 200, 150],]
+      columns: [['hello', 30, 200, 150],]
     }
 });
 
@@ -67,15 +96,4 @@ var pie = c3.generate({
     type:'pie',
       columns: [['data1', 30],['data2', 40], ['data3', 30]]
     }
-});
-
-// get the selected filters
-$('#id_countries, #id_crops ,#id_products').change(function(){
-    var country = $('#id_countries').val();
-    var products = $('#id_crops').val();
-    var products = $('#id_products').val();
-    console.log(country, products);
-    console.log(data);
-    //filter data
-    //
 });
