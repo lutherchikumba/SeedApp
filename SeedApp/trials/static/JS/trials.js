@@ -12,8 +12,8 @@ function initMap() {
   map.addListener("click", (mapsMouseEvent) => {
     // Close the current InfoWindow.
     infoWindow.close();
-    $('#lat').val(mapsMouseEvent.latLng.lat().toPrecision(7));
-    $('#lng').val(mapsMouseEvent.latLng.lng().toPrecision(7));
+    $('#id_latitude').val(mapsMouseEvent.latLng.lat().toPrecision(7));
+    $('#id_longitude').val(mapsMouseEvent.latLng.lng().toPrecision(7));
 
     // Create a new InfoWindow.
     infoWindow = new google.maps.InfoWindow({

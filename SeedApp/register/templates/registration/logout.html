@@ -1,0 +1,10 @@
+{% extends 'register/main.html' %}
+{% load static %}
+{% block content%}
+<link rel ="stylesheet" type = "text/css" href = "{% static '/css/login.css' %}">
+<script type="text/javascript" src ="{% static 'js/logout.js' %}"></script>
+    <h2>You have Logout</h2>
+    <small>
+        <a href="{%url 'login' %}"> Login Again</a>
+    </small>
+{% endblock %}

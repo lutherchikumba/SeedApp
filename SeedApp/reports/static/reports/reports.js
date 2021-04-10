@@ -2,6 +2,8 @@
 const data_value = JSON.parse(document.getElementById('data').textContent);
 const data = JSON.parse(data_value);
 
+
+
 $(document).ready(function() {
     //example cn be found https://leafletjs.com/
     var map = L.map('map').setView([39, -99], 4);
@@ -19,8 +21,8 @@ $(document).ready(function() {
 });
 
 // download chart
-    // direc svg to canvas to png
-    // html to png might work
+// direc svg to canvas to png
+// html to png might work
 function chart(trial){
     var div = d3.create('div');
     var values = [];
@@ -65,4 +67,15 @@ var pie = c3.generate({
     type:'pie',
       columns: [['data1', 30],['data2', 40], ['data3', 30]]
     }
+});
+
+// get the selected filters
+$('#id_countries, #id_crops ,#id_products').change(function(){
+    var country = $('#id_countries').val();
+    var products = $('#id_crops').val();
+    var products = $('#id_products').val();
+    console.log(country, products);
+    console.log(data);
+    //filter data
+    //
 });

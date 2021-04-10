@@ -19,6 +19,7 @@ class Trial(models.Model):
     crop = models.CharField(max_length=50, blank=False, null=True)
     date = models.DateField(default=timezone.now, blank=False, null=True)
     notes = models.CharField(max_length=50, blank=False, null=True)
+    country = models.CharField(max_length=50, blank=False, null=True)
     user = models.CharField(max_length=50, null=True)
 
 
@@ -52,6 +53,14 @@ class ProductList(models.Model):
 
 
 class CountryList(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    name = models.CharField(max_length=50, blank=False, null=True)
+    description = models.CharField(max_length=100, blank=False, null=True)
+
+    def __str__(self):
+        return self.name
+
+class CropList(models.Model):
     id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=50, blank=False, null=True)
     description = models.CharField(max_length=100, blank=False, null=True)
