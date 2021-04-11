@@ -2,9 +2,14 @@
 const data_value = JSON.parse(document.getElementById('data').textContent);
 const data = JSON.parse(data_value);
 var map;
+var summary = {};
+var bar_summary=[];
+var pie_summary=[];
 
 $(document).ready(function() {
     update_map(data);
+    order_summary();
+    console.log(summary)
 });
 
 //create map function
@@ -36,21 +41,23 @@ function marker_chart(trial){
     });
     trial.measures.forEach(function(measure){
         values.push([names[measure.treatment-1], measure.value]);
+        //add kep value to summary
+        if(!(names[measure.treatment-1] in summary)){
+            summary[names[measure.treatment-1]] = '';
+        }
+        summary[names[measure.treatment-1]] += (measure.value +',');
     });
     var chart = c3.generate({bindto: div,
             data: {columns: values,
             type:'bar',
             labels:true},
             axis:{
-                y:{
-                    label:{
+                y:{label:{
                         text: 'Yield b/ac',
                         position: 'outer-middle'}},
-                x:{
-                    type: 'category',
-                    categories:['Treatments']}},
-            title:{
-                text:trial.crop+" Trial:"+trial.id},
+                x:{type: 'category',
+                   categories:['Treatments']}},
+            title:{text:trial.crop+" Trial:"+trial.id},
             size:{// create variables
                 width: 250,
                 height: 200}});
@@ -77,23 +84,53 @@ $('#id_countries, #id_crops ,#id_products').change(function(){
     map.off();
     map.remove();
     update_map(selected);
+    order_summary();
+});
 
+function order_summary(){
     //summarise data
-    //use ajax with filters to return a list with summaries
-});
-
-var bar = c3.generate({
-    bindto: '#barG',
-    data: {
-    type:'bar',
-      columns: [['hello', 30, 200, 150],]
+    for(let key in summary){
+        var all_values = summary[key].split(',')
+        all_values.pop();
+        var total=0;
+        all_values.forEach(function(i){
+            total += parseInt(i);
+        });
+        console.log(all_values.length, total/all_values.length);
+        bar_summary.push([key, total/all_values.length]);
+        pie_summary.push([key, all_values.length]);
     }
-});
+    bar_chart(bar_summary);
+    pie_chart(pie_summary);
 
-var pie = c3.generate({
+    summary = {};
+    pie_summary = [];
+    bar_summary = [];
+}
+
+
+function bar_chart(list_list){
+    var bar = c3.generate({
+        bindto: '#barG',
+        data: {columns: list_list,
+            type:'bar',
+            labels:true},
+        axis:{y:{
+                    label:{
+                        text: 'Yield b/ac',
+                        position: 'outer-middle'}},
+                x:{
+                    type: 'category',
+                    categories:['Treatments']}},
+        title:{text:'Summary Bar Chart'}
+    });
+}
+
+function pie_chart(list_list){
+    var pie = c3.generate({
     bindto: '#pieG',
-    data: {
-    type:'pie',
-      columns: [['data1', 30],['data2', 40], ['data3', 30]]
-    }
-});
+    data: {columns: list_list,
+            type:'pie'},
+    title:{text:'Summary Pie Chart'}
+    });
+}
