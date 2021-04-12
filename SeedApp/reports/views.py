@@ -18,11 +18,12 @@ def reports_view(request):
         trial_measures = list(measures.filter(trial_id=trial.trial_id).values())
         trial_products = list(products.filter(trial_id=trial.trial_id).values())
         data.append({'id': trial.trial_id,
-                                'crop': trial.crop,
-                                'lat': trial.latitude,
-                                'lng': trial.longitude,
-                                'measures': trial_measures,
-                                'products': trial_products})
+                     'crop': trial.crop,
+                     'lat': trial.latitude,
+                     'lng': trial.longitude,
+                     'country': trial.country,
+                     'measures': trial_measures,
+                     'products': trial_products})
     data = json.dumps(data)
     context = {
         'data': data,
