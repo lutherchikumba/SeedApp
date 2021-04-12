@@ -1,10 +1,15 @@
 {% extends 'register/main.html' %}
 {% load static %}
-{% block content%}
-<link rel ="stylesheet" type = "text/css" href = "{% static '/css/login.css' %}">
+
+{% block content %}
+<link rel ="stylesheet" type = "text/css" href = "{% static '/css/logout.css' %}">
 <script type="text/javascript" src ="{% static 'js/logout.js' %}"></script>
-    <h2>You have Logout</h2>
-    <small>
-        <a href="{%url 'login' %}"> Login Again</a>
-    </small>
+<form method="post" class="from-group">
+    {% csrf_token %}
+    {{form|crispy}}
+    <p>Don't have an accoount? Create one <a href="/logout">here</a></p>
+    <button type="submit" class="btn btn-success">logout
+    
+    </button>
+</form>
 {% endblock %}
