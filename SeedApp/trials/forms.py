@@ -30,7 +30,8 @@ class Grower_Form(forms.ModelForm):
 
     class Meta:
         model = Grower
-        fields = ['name','email', 'phone', 'zip_code']
+        fields = ['name','email', 'phone', 'zip_code']   
+
 
 
 class ProductForm(ModelForm):
