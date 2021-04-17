@@ -9,7 +9,6 @@ var pie_summary=[];
 $(document).ready(function() {
     update_map(data);
     order_summary();
-    console.log(summary)
 });
 
 //create map function
