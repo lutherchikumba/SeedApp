@@ -11,7 +11,6 @@ class TestForms (TestCase):
     #         'longitude': -110,
     #         'crop': 'corn',
     #         'notes': 'This is a test.',
-    #         'user': 'rasMaluda'
     #     })
 
     #     self.assertTrue(form.is_valid())
@@ -20,7 +19,7 @@ class TestForms (TestCase):
     #     form = Trial_Form(data={})
 
     #     self.assertFalse(form.is_valid())
-    #     self.assertEquals(len(form.errors), 5)
+    #     self.assertEquals(len(form.errors), 4)
 
     # def test_products_form_valid_data(self):
     #     form = ProductForm(data={
