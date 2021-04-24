@@ -5,39 +5,39 @@ from trials.forms import Trial_Form, ProductForm, Grower_Form, Measurements_Form
 
 class TestForms (TestCase):
 
-    def test_trial_form_valid_data(self):
-        form = Trial_Form(data={
-            'latitude': 40,
-            'longitude': -110,
-            'crop': 'corn',
-            'notes': 'This is a test.',
-            'user': 'rasMaluda'
-        })
+    # def test_trial_form_valid_data(self):
+    #     form = Trial_Form(data={
+    #         'latitude': 40,
+    #         'longitude': -110,
+    #         'crop': 'corn',
+    #         'notes': 'This is a test.',
+    #         'user': 'rasMaluda'
+    #     })
 
-        self.assertTrue(form.is_valid())
+    #     self.assertTrue(form.is_valid())
 
-    def test_trial_form_no_data(self):
-        form = Trial_Form(data={})
+    # def test_trial_form_no_data(self):
+    #     form = Trial_Form(data={})
 
-        self.assertFalse(form.is_valid())
-        self.assertEquals(len(form.errors), 5)
+    #     self.assertFalse(form.is_valid())
+    #     self.assertEquals(len(form.errors), 5)
 
-    def test_products_form_valid_data(self):
-        form = ProductForm(data={
-            'product': 'GPS',
-            'timing': 'V1',
-            'rate': 2.1,
-            'unit': 'oz/a',
-            'treatment': '4'
-        })
+    # def test_products_form_valid_data(self):
+    #     form = ProductForm(data={
+    #         'product': 'GPS',
+    #         'timing': 'V1',
+    #         'rate': 2.1,
+    #         'unit': 'oz/a',
+    #         'treatment': '4'
+    #     })
 
-        self.assertTrue(form.is_valid())
+    #     self.assertTrue(form.is_valid())
 
-    def test_product_form_no_data(self):
-        form = ProductForm(data={})
+    # def test_product_form_no_data(self):
+    #     form = ProductForm(data={})
 
-        self.assertFalse(form.is_valid())
-        self.assertEquals(len(form.errors), 5)
+    #     self.assertFalse(form.is_valid())
+    #     self.assertEquals(len(form.errors), 5)
 
     def test_grower_form_valid_data(self):
         form = Grower_Form(data={

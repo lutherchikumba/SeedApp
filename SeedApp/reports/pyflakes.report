@@ -1,0 +1,11 @@
+register\admin.py:1:1 'django.contrib.admin' imported but unused
+register\forms.py:1:1 'django.contrib.auth.login' imported but unused
+register\forms.py:1:1 'django.contrib.auth.authenticate' imported but unused
+register\forms.py:4:1 redefinition of unused 'UserCreationForm' from line 2
+register\models.py:1:1 'django.db.models' imported but unused
+register\tests.py:3:1 'django.urls.reverse' imported but unused
+register\views.py:1:1 'django.forms' imported but unused
+register\views.py:3:1 'django.contrib.auth.login' imported but unused
+register\views.py:3:1 'django.contrib.auth.authenticate' imported but unused
+register\views.py:5:1 'django.contrib.auth.forms.UserCreationForm' imported but unused
+register\views.py:6:1 'django.contrib.auth.models.User' imported but unused

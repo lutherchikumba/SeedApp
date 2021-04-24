@@ -1,0 +1,24 @@
+register\forms.py:12:1: W191 indentation contains tabs
+register\forms.py:12:1: E101 indentation contains mixed spaces and tabs
+register\forms.py:13:1: W391 blank line at end of file
+register\tests.py:5:1: E302 expected 2 blank lines, found 1
+register\tests.py:11:5: E301 expected 1 blank line, found 0
+register\tests.py:29:52: W291 trailing whitespace
+register\tests.py:29:1: W391 blank line at end of file
+register\tests.py:29:52: W291 trailing whitespace
+register\urls.py:7:80: E501 line too long (98 > 79 characters)
+register\urls.py:8:80: E501 line too long (108 > 79 characters)
+register\views.py:9:1: E302 expected 2 blank lines, found 1
+register\views.py:11:1: W191 indentation contains tabs
+register\views.py:11:1: E101 indentation contains mixed spaces and tabs
+register\views.py:12:1: W191 indentation contains tabs
+register\views.py:12:2: E101 indentation contains mixed spaces and tabs
+register\views.py:13:1: W191 indentation contains tabs
+register\views.py:13:2: E101 indentation contains mixed spaces and tabs
+register\views.py:15:1: W191 indentation contains tabs
+register\views.py:15:2: E101 indentation contains mixed spaces and tabs
+register\views.py:16:1: E101 indentation contains mixed spaces and tabs
+register\views.py:17:1: W191 indentation contains tabs
+register\views.py:17:1: E101 indentation contains mixed spaces and tabs
+register\views.py:19:1: E101 indentation contains mixed spaces and tabs
+register\views.py:19:62: E231 missing whitespace after ':'
