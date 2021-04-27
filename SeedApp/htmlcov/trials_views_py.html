@@ -68,7 +68,7 @@
     <p id="t14" class="run"><span class="n"><a href="#t14">14</a></span><span class="t"><span class="key">def</span> <span class="nam">home</span><span class="op">(</span><span class="nam">request</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t15" class="run"><span class="n"><a href="#t15">15</a></span><span class="t">    <span class="nam">form</span> <span class="op">=</span> <span class="nam">Grower_Form</span><span class="op">(</span><span class="nam">request</span><span class="op">.</span><span class="nam">POST</span> <span class="key">or</span> <span class="key">None</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t16" class="run"><span class="n"><a href="#t16">16</a></span><span class="t">    <span class="key">if</span> <span class="nam">request</span><span class="op">.</span><span class="nam">method</span> <span class="op">==</span> <span class="str">'POST'</span> <span class="key">and</span> <span class="nam">form</span><span class="op">.</span><span class="nam">is_valid</span><span class="op">(</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t17" class="mis show_mis"><span class="n"><a href="#t17">17</a></span><span class="t">        <span class="nam">form</span><span class="op">.</span><span class="nam">save</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t17" class="mis show_mis"><span class="n"><a href="#t17">17</a></span><span class="t">        <span class="nam">form</span> <span class="op">=</span> <span class="nam">form</span><span class="op">.</span><span class="nam">save</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t18" class="run"><span class="n"><a href="#t18">18</a></span><span class="t">    <span class="key">return</span> <span class="nam">render</span><span class="op">(</span><span class="nam">request</span><span class="op">,</span> <span class="str">'trials/dashboard.html'</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t19" class="pln"><span class="n"><a href="#t19">19</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t20" class="run"><span class="n"><a href="#t20">20</a></span><span class="t"><span class="key">def</span> <span class="nam">trials</span><span class="op">(</span><span class="nam">request</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
@@ -152,7 +152,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.4</a>,
-            created at 2021-04-24 10:16 -0600
+            created at 2021-04-27 12:36 -0600
         </p>
     </div>
 </div>

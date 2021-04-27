@@ -1,7 +1,10 @@
 from django.test import TestCase, Client
 from django.urls import reverse
 from django.test import RequestFactory
+from django.contrib.auth.forms import UserCreationForm
 from trials.models import Grower, Trial, Product, Measure
+from trials.forms import Grower_Form
+from trials.views import *
 import json
 
 class TestViews (TestCase):
@@ -29,26 +32,19 @@ class TestViews (TestCase):
         )
 
     def test_project_home_GET(self):
-
+        form = Trial_Form(data={})
         response = self.client.get(self.dashboard_url)
-
-        self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, 'trials/dashboard.html')
-
-
-        response = self.client.get(self.dashboard_url)
-
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'trials/dashboard.html')
 
     def test_project_trials_GET(self):
-
+        form = Trial_Form(data={})
         response = self.client.get(self.trials_url)
 
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'trials/trials_info.html')
 
-    def test_project_trials_POST_add_new_trial(self):
+    def test_trials_POST_add_new_trial(self):
         Trial.objects.create(
             latitude = 42.83557,
             longitude = -105.6259,
@@ -73,13 +69,13 @@ class TestViews (TestCase):
 
 
 
-    def test_project_measurement_GET(self):
+    def test_measurement_GET(self):
 
-        response = self.client.get(self.measurements_url)
+        response_one = self.client.get(self.measurements_url, follow=True)
 
-        self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, 'trials/measurements_info.html')
-        # self.assertRedirects(response, 'trial_name')
+        self.assertEquals(response_one.status_code, 200)
+        self.assertTemplateUsed(response_one, 'trials/measurements_info.html')
+        # self.assertRedirects(response_two, 'trials/trials_info.html', status_code=302,fetch_redirect_response=True)
 
     def test_project_products_GET(self):
 
@@ -87,27 +83,3 @@ class TestViews (TestCase):
 
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response,  'trials/products_info.html')
-
-    def test_measurements_POST_add_new_measurements(self):
-        Measure.objects.create(
-            measure = 'Yeild',
-            unit =' oz/a',
-            timing = 'Harvesting',
-            value = '12',
-            treatment = 1
-        )
-
-        response = self.client.post(self.measurements_url, {
-            'measure' : 'Yeild',
-            'unit' : ' oz/a',
-            'timing' : 'Harvesting',
-            'value' : '12',
-            'treatment' : 1
-        })
-        self.assertEquals(response.status_code, 302)
-        self.assertEquals(self.measurements_1.measure, 'Yeild')
-        self.assertEquals(self.measurements_1.unit,' oz/a')
-        self.assertEquals(self.measurements_1.timing, 'Harvesting')
-        self.assertEquals(self.measurements_1.value, '12')
-        self.assertEquals(self.measurements_1.treatment, 1)
-

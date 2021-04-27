@@ -14,7 +14,7 @@ from .forms import ProductForm
 def home(request):
     form = Grower_Form(request.POST or None)
     if request.method == 'POST' and form.is_valid():
-        form.save()
+        form = form.save()
     return render(request, 'trials/dashboard.html')
 
 def trials(request):
